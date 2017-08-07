@@ -1,0 +1,31 @@
+@import './baseLess/color';
+input-label-drop {
+    div.layout-row>label {
+        line-height: 42px;
+        color: @ssTextExtColor;
+        &.required:before {
+            content: '*';
+            color: @ssRequiredMarkColor;
+            margin: 3px;
+            vertical-align: middle;
+        }
+    }
+    .input-container {
+        margin: 6px;
+        input {
+            // margin: 8px 6px;
+            padding: 0 3px;
+            align-self: inherit;
+        }
+        md-input-container {
+            margin: 0 0 0 2px;           
+        }
+    }
+    // .layout-row>.flex-19 {
+    //     -ms-flex: 1 1 19%;
+    //     flex: 1 1 19%;
+    //     max-width: 19%;
+    //     max-height: 100%;
+    //     box-sizing: border-box;
+    // }
+}

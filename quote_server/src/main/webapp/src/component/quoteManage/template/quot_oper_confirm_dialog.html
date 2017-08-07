@@ -1,0 +1,26 @@
+<md-dialog md-theme="{{$ctrl.theme}}" aria-label="dialog" md-colors="::{backgroundColor: '{{$ctrl.theme}}-background-700'}">
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <h2 ng-bind="$ctrl.title"></h2>
+            <span flex></span>
+            <md-button md-no-ink class="md-icon-button" ng-click="$ctrl.$onClickCancel()">
+                <md-icon class="ss-icon ss-icon-close" aria-label="Close dialog"></md-icon>
+            </md-button>
+        </div>
+    </md-toolbar>
+    <md-dialog-content class="md-dialog-content">
+        <md-input-container class="md-prompt-input-container">
+            <div layout="row">
+                <div></div>
+                <div layout="column" style="font-family:MicrosoftYaHei;font-size:14px;text-align:left; margin-left: 4px;">
+                    <div style="color:#ffebc8;line-height:37px">{{$ctrl.textContent}}</div>
+                    <div style="color:#f9c66e;line-height:14px">{{$ctrl.quotContent}}</div>
+                </div>
+            </div>
+        </md-input-container>
+    </md-dialog-content>
+    <md-dialog-actions>
+        <md-button md-no-ink ng-click="$ctrl.$onClickOk($event)" class="md-primary md-confirm-button">{{ $ctrl.okText }}</md-button>
+        <md-button md-no-ink ng-click="$ctrl.$onClickCancel($event)" class="md-primary md-cancel-button">{{ $ctrl.cancelText }}</md-button>
+    </md-dialog-actions>
+</md-dialog>

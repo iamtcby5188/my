@@ -1,0 +1,12 @@
+<div class="chart_container" style="position: relative;" md-colors="::{backgroundColor: '{{$ctrl.theme}}-background-700'}">
+
+    <input-button-selector md-theme="{{$ctrl.theme}}" ng-model="$ctrl.quotePriceType" ng-change="$ctrl.onSearchCriteriaChanged()"
+        label="{{$ctrl.quotePriceTypeLabel}}" vm-type="Object" has-select-all-button="false" item-source="$ctrl.quotePriceTypeItemSource" display-path="name"
+        label-flex="10"> </input-button-selector>
+
+        <input-button-selector md-theme="{{$ctrl.theme}}" ng-model="$ctrl.term" ng-change="$ctrl.onSearchCriteriaChanged()"
+            label="{{$ctrl.termLabel}}" vm-type="Object" has-select-all-button="false" item-source="$ctrl.termItemSource" display-path="name"
+            label-flex="10"> </input-button-selector>
+
+            <div id="chart_price_history"></div>
+</div>

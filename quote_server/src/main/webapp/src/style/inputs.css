@@ -1,0 +1,14 @@
+    div.row {
+        margin: 0.2rem 0.5rem;
+        display: inline-flex;
+        width: 80%;
+    }
+
+        div.row > * {
+            margin: 0.25rem;
+            width: 25%;
+        }
+
+        div.row > span {
+            text-align: left;
+        }

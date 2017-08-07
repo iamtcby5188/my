@@ -1,0 +1,8 @@
+<div class="auto-complete-container">   
+  <md-autocomplete flex md-selected-item="$ctrl.selectedItem" md-search-text="$ctrl.searchText" md-search-text-change="$ctrl.searchTextChange()"
+                  md-selected-item-change="$ctrl.selectedItemChange()" md-items="item in $ctrl.searchRet" md-item-text="item.$displayName" ng-keyup="$ctrl.enterEvent($event)" placeholder="{{ $ctrl.placeholder }}">
+      <md-item-template>
+        <span md-highlight-text="$ctrl.searchText">{{item.$displayName}}</span>
+      </md-item-template>
+  </md-autocomplete>
+</div>

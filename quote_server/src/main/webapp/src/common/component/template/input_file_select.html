@@ -1,0 +1,19 @@
+<div layout="column">
+    <div layout="row">
+        <label ng-if="$ctrl.label" ng-class="{'required': $ctrl.isRequired}" ng-bind-template="{{$ctrl.label}}：" flex="{{$ctrl.labelFlex}}"></label>
+        <div flex="{{$ctrl.inputFlex}}" class="inputContainer">
+            <input class="ss-input-text ss-input-text-sm" md-theme="{{$ctrl.theme}}" type="file" id="file" onchange="angular.element(this).scope().handleFiles(this.files)" ng-model="files" accept="image/png,image/jpeg">
+            <input  ng-readonly="true" class="ss-input-text ss-input-text-sm" md-theme="{{$ctrl.theme}}" id="file_1" type="text" value="请选择图片"></div>  
+            <!--<md-button md-no-ink md-theme="{{$ctrl.theme}}" class="md-raised md-primary" ng-click="$ctrl.onClickUpload()">上传</md-button>-->
+        </div>
+    </div>
+    <div layout="row">
+        <label flex = "{{$ctrl.labelFlex}}"></label>
+        <span ng-if="bShowTip" style="color: red;text-align: left;margin-left:12px;margin-top:6px">选择文件需要小于 200K</span>
+        <span ng-if="bShowTipErrType" style="color: red;text-align: left;margin-left:12px;margin-top:6px">仅支持png、jpg格式的图片</span>
+        <div ng-show = "bShowImg && $ctrl.isShowThumb" style="margin-left:8px">
+            <image layout-align="center center"  id="img" ng-src="{{thumb}}" ng-click="$ctrl.onShowOrg()"></image>
+        </div>
+    </div>
+
+</div>

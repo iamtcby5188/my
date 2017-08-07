@@ -1,0 +1,34 @@
+@import './baseLess/color';
+input-date-picker {
+    div.layout-row > label {
+        line-height: 42px;
+        color: @ssTextExtColor;
+        &.required:before {
+            content: '*';
+            color: @ssRequiredMarkColor;
+            margin: 3px;
+            vertical-align: middle;
+        }
+    }
+    .ss-datepicker-directive {
+        width: 100%;
+        margin: 8px 6px;
+        .ss-input-text {
+            box-sizing: border-box;
+        }
+        .defaultDatePickerInput,
+        .defaultDatePickerInput:hover,
+        .defaultDatePickerInput:focus {
+            text-align: left;
+        }
+        .inputRect {
+            width: 100%;
+        }
+    }
+
+    .input-container > label{
+        line-height: 42px;
+        color: @ssTextExtColor;
+        vertical-align:top;
+    }
+}

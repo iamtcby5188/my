@@ -1,0 +1,13 @@
+<div class="ss-menu" ng-show="menuShow">
+    <ul class="ss-text-secondary" ng-class="{'ss-menu-active':mindex==$index,'ss-menu-icon':d.icon,'ss-menu-children':d.children}" ng-repeat="d in data" ng-mouseleave="menuOut()" ng-mouseover="menuOver(d.children,$index)" ng-click="d.event?d.event($event,d):menuClickFn($event,d)">
+        {{d.title}}
+        <li ng-if="d.line" ng-class="{'ss-menu-line':d.line}"></li>
+        <div class="ss-menu ss-menu-first-children" ng-class="{'ss-menu-showLeft':menuShowLeft,'ss-menu-showRight':!menuShowLeft}" ng-if="showchildrenindex==$index">
+            <ul class="ss-text-secondary" ng-mouseover="childrenMenuOver($index)" ng-mouseleave="childrenMenuOut()"
+                ng-class="{'ss-menu-active':childrenhoverindex==$index,'ss-menu-icon':dc.icon}" ng-repeat="dc in d.children track by $index" ng-click="dc.event?dc.event($event,dc):menuClickFn($event,dc)">
+                {{dc.title}}
+                <li ng-if="dc.line" ng-class="{'ss-menu-line':dc.line}"></li>
+            </ul>
+        </div>
+    </ul>
+</div>

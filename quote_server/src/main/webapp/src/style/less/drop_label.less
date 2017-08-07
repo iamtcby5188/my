@@ -1,0 +1,26 @@
+@import './baseLess/color';
+drop-label {
+    div.layout-row > label {        
+        color: @ssTextExtColor;
+        &.required:before {
+            content: '*';
+            color: @ssRequiredMarkColor;
+            margin: 3px;
+            vertical-align: middle;
+        }
+    }
+
+    input {
+        margin: 8px 6px;
+        padding: 0 3px;
+    }
+    
+    md-input-container {    
+        padding: 0;
+        margin: 2px 5px;
+
+        &.md-input-has-value .md-select-value > span:not(.md-select-icon){
+            transform: none;
+        }
+    }
+}

@@ -1,0 +1,26 @@
+<div ng-click="$ctrl.onClickButton($event)">
+    <div ng-repeat="item in $ctrl.itemSource" ng-if="item.bShow" ng-class="item.containerClass" class="{{item.containerAlien}}" flex="{{item.flex}}" md-theme="{{$ctrl.theme}}" ng-switch="item.component">
+        <div class="search-pricemng-item" ng-switch-when="barNav">
+            <bar-nav md-theme="{{$ctrl.theme}}" ng-model="item.attribute.ngModel" item-source="item.attribute.itemSource" tab-changed="$ctrl.onTabChanged(tabCode)" vm-changed="$ctrl.onVmChanged()" display-path="{{item.attribute.displayPath}}"></bar-nav>
+        </div>
+        <div class="search-pricemng-item" ng-switch-when="inputDatePickerRange">
+            <input-date-picker-range md-theme="{{$ctrl.theme}}" ng-model="item.attribute.ngModel" ctrl-flex="item.attribute.flex" item-source="item.attribute.itemSource" label="{{item.attribute.label}}" vm-changed="$ctrl.onVmChanged()" ></input-date-picker-range>
+        </div>
+        <div class="search-pricemng-item" ng-switch-when="dropLabel" style="margin-top:6px">
+            <drop-label md-theme="{{$ctrl.theme}}" display-path="{{item.attribute.displayPath}}" ng-model="item.attribute.ngModel" item-source="item.attribute.itemSource" input-flex="item.attribute.flex.input" label-flex="item.attribute.flex.label" label="{{item.attribute.label}}" vm-changed="$ctrl.onVmChanged()"></drop-label>
+        </div>
+        <div class="search-pricemng-item" ng-switch-when="mdButton">
+            <md-button md-no-ink class="md-raised md-primary" aria-label="mdButton" ng-bind="item.displayName"></md-button>
+        </div>
+        <div class="search-pricemng-item" ng-switch-when="inputDatePicker">
+            <input-date-picker md-theme="{{$ctrl.theme}}" ng-model="item.attribute.ngModel" label="{{item.attribute.label}}" vm-changed="$ctrl.onVmChanged()" ctrl-flex="item.attribute.flex"></input-date-picker>
+        </div>
+        <div class="search-pricemng-item" ng-switch-when="inputSearch">
+            <input-auto-complete md-theme="{{$ctrl.theme}}"  ng-model="item.attribute.ngModel" vm-changed="$ctrl.onVmChanged()" search-fun="$ctrl.doSearch(content)" is-async="false" display-path="{{item.attribute.displayPath}}" placeholder="备注"></input-auto-complete>
+        </div>
+        <div class="search-pricemng-item" ng-switch-when="inputSearchAsyn">
+            <input-auto-complete md-theme="{{$ctrl.theme}}"  ng-model="item.attribute.ngModel" vm-changed="$ctrl.onVmChanged()" search-fun-async="$ctrl.doSearchAsyn(content)" is-async="true" display-path="{{item.attribute.displayPath}}" placeholder="备注"></input-auto-complete>
+        </div>
+        <h1 ng-switch-default ng-bind-template="No input component defined for '{{item.component}}'"></h1>
+    </div>
+</div>

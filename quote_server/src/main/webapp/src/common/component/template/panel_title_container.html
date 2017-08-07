@@ -1,0 +1,6 @@
+<div ng-class="{'style-light': $ctrl.type === 'light' || !$ctrl.type, 'style-dark': $ctrl.type === 'dark'}">
+    <md-nav-bar md-selected-nav-item="$ctrl.currentNavItem" nav-bar-aria-label="navigation links" ng-click="$ctrl.onClickItem($event)">
+        <md-nav-item ng-repeat="item in $ctrl.itemSource" md-nav-click="" name="{{item.value}}">{{item.$displayName}}</md-nav-item>
+    </md-nav-bar>
+    <div class="content" ng-transclude></div>
+</div>

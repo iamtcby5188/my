@@ -1,0 +1,26 @@
+<div ng-if="$ctrl.isNoData" layout="row" layout-align="center center">
+    <h2>没有当日报价</h2>
+</div>
+
+<table ng-if="!$ctrl.isNoData">
+    <thead>
+        <tr class="even">
+            <th layout-padding></th>
+            <th layout-padding ng-repeat="item in $ctrl.itemSource | orderBy: '+$displayOrder'" ng-bind="item.$displayName"></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr class="odd">
+            <td class="td_priceMax" layout-padding>最高价</td>
+            <td layout-padding ng-repeat="item in $ctrl.itemSource | orderBy: '+$displayOrder'" ng-bind="item.priceMax"></td>
+        </tr>
+        <tr class="even">
+            <td class="td_priceMin" layout-padding>最低价</td>
+            <td layout-padding ng-repeat="item in $ctrl.itemSource | orderBy: '+$displayOrder'" ng-bind="item.priceMin"></td>
+        </tr>
+        <tr class="odd">
+            <td class="td_priceAvg" layout-padding>平均价</td>
+            <td layout-padding ng-repeat="item in $ctrl.itemSource | orderBy: '+$displayOrder'" ng-bind="item.priceAvg"></td>
+        </tr>
+    </tbody>
+</table>

@@ -1,0 +1,4 @@
+D:\angular-webpack\obj\Debug\angular-webpack.njsprojResolveAssemblyReference.cache
+D:\angular-webpack\bin\Microsoft.NodejsTools.WebRole.dll
+D:\Sumscope\angular-material-webpack\obj\Debug\angular-webpack.njsprojResolveAssemblyReference.cache
+D:\Sumscope\angular-material-webpack\bin\Microsoft.NodejsTools.WebRole.dll

@@ -1,0 +1,12 @@
+<div layout="row" layout-align="start center">
+    <label flex="{{$ctrl.ctrlFlex.label}}" ng-show="$ctrl.label">{{$ctrl.label}}</label>
+    <input flex="{{$ctrl.ctrlFlex.start}}" ng-model="$ctrl.rangeValue.start" value="{{$ctrl.itemSource.start}}" class="ss-input-text ss-input-text-sm"></input>
+    <span>-</span>
+    <input flex="{{$ctrl.ctrlFlex.end}}" ng-model="$ctrl.rangeValue.end" value="{{$ctrl.itemSource.end}}" class="ss-input-text ss-input-text-sm"></input>
+    <md-select aria-label="item" flex="{{$ctrl.ctrlFlex.drop}}" ng-model="$ctrl.rangeValue.dropSel" ng-change="$ctrl.onDropChange()">
+        <md-option aria-label="option" ng-repeat="item in $ctrl.itemSource.dropList" ng-value = "item">{{item.displayName}}</md-option>
+    </md-select>
+    <div flex="{{$ctrl.ctrlFlex.button}}">
+        <md-button md-no-ink aria-label="button"  class="md-raised md-primary" ng-click="$ctrl.onClickFilter()">筛选</md-button>
+    </div>
+</div>

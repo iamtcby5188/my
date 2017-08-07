@@ -1,0 +1,45 @@
+@import './baseLess/color';
+@buttonBorder: 1px solid #0d7b7b;
+input-button-switcher {
+    div.layout-row > label {
+        color: @ssTextExtColor;
+    }
+    nav {
+        display: inline-block;
+        white-space: nowrap;
+        >ul {
+            margin: 6px 8px;
+            display: inline-block;
+            padding: 0;
+            >li {
+                display: inline-block;
+                .md-button.md-ssAvalonUi-theme {
+                    margin: 0;
+                    text-transform: none;
+                    border-radius: 0;
+                    border-top: @buttonBorder;
+                    border-bottom: @buttonBorder;
+                    border-right: @buttonBorder;
+                    height: 30px;
+                    min-height: 1rem;
+                    line-height: initial;
+                    color: @ssBtnGrayDisabledColor;
+                    &.md-primary.md-raised.active {
+                        color: @ssBtnGrayActiveColor;
+                    }
+					&:hover {
+						background-color: red;
+					}
+                }
+                &:first-child .md-button.md-ssAvalonUi-theme {
+                    border-radius: 2px 0 0 2px;
+                    border-left: @buttonBorder;
+                }
+                &:last-child .md-button.md-ssAvalonUi-theme {
+                    border-radius: 0 2px 2px 0;
+                    border-right: @buttonBorder;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,121 @@
+@import './baseLess/color';
+
+panel-title-container {
+	._md-nav-bar-list {
+		background-color: @ssBgExtColor;
+	}
+	> div.style-light {
+		div.content {
+			border-top: 2px solid @ssBtnGrayActiveBgColor;
+		}
+		md-nav-bar.md-ssAvalonUi-theme {
+			.md-nav-bar li {
+				> .md-button._md-nav-button.md-unselected {
+					background: @ssPanelTitleLightDisabledBg;
+				}
+			}
+		}
+	}
+	> div.style-dark {
+		div.content {
+			border-top: 2px solid @ssPanelTitleBarColor;
+		}
+		md-nav-bar.md-ssAvalonUi-theme {
+			.md-nav-bar li {
+				> .md-button._md-nav-button {
+					font-weight: 700;
+					color: @textGoldColor;
+				}
+				> .md-button._md-nav-button.md-unselected,
+				> .md-button.md-ssAvalonUi-theme.md-accent {
+					background: transparent;
+				}
+			}
+			md-nav-ink-bar {
+				color: transparent;
+				background: transparent;
+			}
+		}
+	}
+	md-nav-bar.md-ssAvalonUi-theme {
+		div.md-nav-bar {
+			border-bottom-width: 0px;
+		}
+		.md-nav-bar {
+			height: 24px;
+			li {
+				> .md-button._md-nav-button {
+					height: 24px;
+					line-height: 24px;
+					padding: 0px 16px;
+					border-radius: 3px 3px 0 0;
+					margin: 0px 1px;
+				}
+				> .md-button._md-nav-button.md-unselected {
+					background: @ssPanelTitleLightDisabledBg;
+				}
+			}
+			li:first-of-type {
+				margin-left: 0px;
+				> .md-button._md-nav-button {
+					margin-left: 0px;
+				}
+			}
+		}
+	}
+	.layout-align-start-center,
+	.layout-align-center-center,
+	.layout-align-end-center,
+	.layout-align-space-between-center,
+	.layout-align-space-around-center {
+		> label {
+			max-width: 100px !important;
+			text-align: right;
+		}
+		&:focus {
+			text-align: right;
+			outline: transparent auto 5px;
+		}
+	}
+	.chartVm_current {
+		table {
+			width: 100%;
+			text-align: right;
+			color: @ssTextSndColor;
+			border-collapse: collapse;
+			> thead {
+				color: @ssTextExtColor;
+				th {
+					font-weight: normal;
+					background-color: @ssBgExtColor;
+				}
+			}
+			> tbody {
+				tr {
+					&.odd {
+						background: @tableTrEvenBgColor;
+					}
+					&.even {
+						background: @tableTrOddBgColor;
+					}
+					> td:first-child {
+						text-align: center;
+						width: 100px;
+					}
+					.td_priceMax {
+						color: @textRedColor;
+					}
+					.td_priceMin {
+						color: @textGreenColor;
+					}
+					.td_priceAvg {
+						color: @textGoldColor;
+					}
+				}
+				.layout-padding {
+					padding: 6px;
+				}
+			}
+		}
+	}
+}

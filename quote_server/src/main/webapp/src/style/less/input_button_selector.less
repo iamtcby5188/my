@@ -1,0 +1,29 @@
+@import './baseLess/color';
+input-button-selector {
+    div.layout-row > label {
+        color: @ssTextExtColor;
+    }
+    .md-button.md-ssAvalonUi-theme {
+        text-transform: none;
+        height: 24px;
+        min-height: 1rem;
+        min-width: 60px;
+        line-height: initial;
+        color: @ssTextSndColor;
+        &.md-warn.md-raised.active {
+            color: @ssBtnWarningColor;
+            background-color: @ssBtnWarningBgColor;
+        }
+
+        &.md-button.md-ssAvalonUi-theme[disabled].disable-btn{
+             background: #2b2e2f;
+            color:@ssTextExtColor;
+        }
+    }
+	.md-button.md-ssAvalonUi-theme:not([disabled]):hover {
+		background-color: @ssBtnHoverBgColor;
+	}
+	button.md-button {
+		margin: 3px 4px;
+	}
+}

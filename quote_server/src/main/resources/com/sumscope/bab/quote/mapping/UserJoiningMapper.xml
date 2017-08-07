@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sumscope.bab.quote.mapping.UserJoiningMapper">
+    <resultMap id="BaseResultMap"
+               type="com.sumscope.bab.quote.model.model.JoiningUserModel">
+        <result column="user_id" property="userId" jdbcType="VARCHAR"/>
+        <result column="joining_user_id" property="joinUserId" jdbcType="VARCHAR"/>
+        <result column="joining_display_mode" property="joinMode" typeHandler="com.sumscope.optimus.commons.databasetypehandler.EnumTypeHandler" />
+    </resultMap>
+
+    <select id="queryJoiningUser" resultMap="BaseResultMap" parameterType="java.lang.String">
+        <include refid="baseQuery"></include>
+        where user_id = #{userId,jdbcType=VARCHAR}
+    </select>
+
+    <select id="queryUserJoin" resultMap="BaseResultMap" parameterType="java.lang.String">
+        <include refid="baseQuery"></include>
+        where joining_user_id = #{userId,jdbcType=VARCHAR}
+    </select>
+
+    <select id="queryAllJoiningUser" resultMap="BaseResultMap">
+        <include refid="baseQuery"></include>
+    </select>
+
+    <sql id="baseQuery">
+        SELECT user_id,joining_user_id,joining_display_mode from bab_joining_users
+    </sql>
+
+    <update id="updateJoiningUser">
+        UPDATE bab_joining_users SET user_id=#{userId,jdbcType=VARCHAR},joining_user_id=#{joinUserId,jdbcType=VARCHAR},joining_display_mode=#{joinMode,typeHandler=com.sumscope.optimus.commons.databasetypehandler.EnumTypeHandler}
+        where user_id=#{userId,jdbcType=VARCHAR} and joining_user_id=#{joinUserId,jdbcType=VARCHAR}
+    </update>
+
+    <insert id="insertJoiningUser" parameterType="com.sumscope.bab.quote.model.model.JoiningUserModel">
+        INSERT INTO bab_joining_users VALUES (#{userId,jdbcType=VARCHAR},#{joinUserId,jdbcType=VARCHAR},#{joinMode,typeHandler=com.sumscope.optimus.commons.databasetypehandler.EnumTypeHandler})
+    </insert>
+
+    <update id="flushSecondaryCache">
+        UPDATE bab_joining_users set user_id = "" where user_id = "";
+    </update>
+
+    <delete id="deleteJoiningUser" parameterType="com.sumscope.bab.quote.model.model.JoiningUserModel">
+        DELETE FROM bab_joining_users where user_id=#{userId,jdbcType=VARCHAR} and joining_user_id=#{joinUserId,jdbcType=VARCHAR} and joining_display_mode=#{joinMode,typeHandler=com.sumscope.optimus.commons.databasetypehandler.EnumTypeHandler}
+    </delete>
+
+</mapper>

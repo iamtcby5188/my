@@ -1,0 +1,21 @@
+@import './baseLess/color';
+input-file-select {
+    div.layout-row > label {        
+        color: @ssTextExtColor;
+        &.required:before {
+            content: '*';
+            color: @ssRequiredMarkColor;
+            margin: 3px;
+            vertical-align: middle;
+        }
+    }
+
+    .inputContainer{
+        margin-left: 6px;
+    }
+    #file{opacity:0;position:absolute;}  
+    #file_1{
+        width: 102%;
+    }  
+}
+

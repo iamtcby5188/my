@@ -1,0 +1,27 @@
+﻿<div class="basecss body-font-family">
+	<p class="ss-text-lg ss-text-primary">图标集 使用设计组 {{timeStamp}} 的图标文件</p>
+	<p class="ss-text-lg ss-text-primary">针对Icon背景有无，Css中添加 .ss-icon-highlight-bg 类，以供实际使用中控制</p>
+	<p class="ss-text-lg ss-text-primary">Load config: {{configConsts.tag}}</p>
+
+	<div>
+		<span class="ss-text-primary">Find icon by keyword:</span>
+		<input class="ss-input-text ss-input-text-sm" type="text" value="" ng-model="filterString" />
+	</div>
+
+	<div class="ss-container">
+		<div class="left">
+			<div ng-if="$even" ng-repeat="cssObj in parsedCss | filter: filterString">
+				<i class="ss-icon" ng-class="cssObj.className"></i>
+				<i class="ss-icon" ng-class="cssObj.className" disabled></i>
+				<span class="ss-text-primary" ng-bind="cssObj.selector"></span>
+			</div>
+		</div>
+		<div class="right">
+			<div ng-if="$odd" ng-repeat="cssObj in parsedCss | filter: filterString">
+				<i class="ss-icon" ng-class="cssObj.className"></i>
+				<i class="ss-icon" ng-class="cssObj.className" disabled></i>
+				<span class="ss-text-primary" ng-bind="cssObj.selector"></span>
+			</div>
+		</div>
+	</div>
+</div>

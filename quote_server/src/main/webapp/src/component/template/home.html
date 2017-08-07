@@ -1,0 +1,19 @@
+<div layout="column" md-theme="{{$ctrl.theme}}" ng-click="$ctrl.test($event)">
+
+    <md-nav-bar md-no-ink ng-show = '$ctrl.navVisiable' md-selected-nav-item="currentNavItem" nav-bar-aria-label="navigation links" md-colors="::{backgroundColor: '{{$ctrl.theme}}-background-700'}">
+
+        <md-nav-item ng-if="$ctrl.navDisplay === true || $ctrl.navDisplay.SSR" md-nav-click="" ng-link="['ListSsrTicketHall']" name="SSR">直贴交易大厅</md-nav-item>
+        <md-nav-item ng-if="$ctrl.navDisplay === true || $ctrl.navDisplay.SSC" md-nav-click="" ng-link="['ListSscTicketHall']" name="SSC">全国直贴价格</md-nav-item>
+        <md-nav-item ng-if="$ctrl.navDisplay === true || $ctrl.navDisplay.NPC" md-nav-click="" ng-link="['ListNpcTicketHall']" name="NPC">全国转贴价格</md-nav-item>
+
+        <md-nav-item ng-if="$ctrl.navDisplay === true || $ctrl.navDisplay.MngSsr" md-nav-click="" ng-link="['ManageSsrTicketHall']" name="MngSsr">直贴业务管理</md-nav-item>
+        <md-nav-item ng-if="$ctrl.navDisplay === true || $ctrl.navDisplay.MngSsc" md-nav-click="" ng-link="['ManageSscTicketHall']" name="MngSsc">直贴价格管理</md-nav-item>
+        <md-nav-item ng-if="$ctrl.navDisplay === true || $ctrl.navDisplay.MngNpc" md-nav-click="" ng-link="['ManageNpcTicketHall']" name="MngNpc">转贴价格管理</md-nav-item>
+    </md-nav-bar>
+
+    <div layout="row" layout-align="center stretch">
+        <div flex="100">
+            <ng-outlet></ng-outlet>
+        </div>
+    </div>
+</div>

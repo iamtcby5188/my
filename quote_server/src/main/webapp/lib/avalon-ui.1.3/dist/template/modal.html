@@ -1,0 +1,55 @@
+<div class="ss-modal">
+    <div id="box" class="ss-modal-dialog">
+        <div class="ss-modal-content">
+            <div class="ss-modal-header" id="bar">
+                <button type="button" class="close cancel"
+                        data-dismiss="ss-modal" aria-hidden="true">
+                    &times;
+                </button>
+                <h4 class="ss-modal-title" id="myModalLabel">
+                    表格设置
+                </h4>
+            </div>
+            <div ng-if="columsSettingNoGroup" class="ss-modal-body" align="left" style="margin-left: 42px;">
+                <!--<div ng-repeat="col in columns_setting | filter:{'group':'user'}" class="column-setting-no-group">-->
+                <div ng-repeat="col in rangeeee(0,10) track by $index" class="column-setting-no-group">
+                    <input type="checkbox" class="ss-checkbox-directive"
+                           ng-model="col.checked" ng-disabled="col.unchecked" ss-label={{col.field}}>
+                </div>
+
+                <p class="columns-setting-modal-line-no-group"></p>
+
+                <div ng-repeat="col in rangeeee(10,20) track by $index" class="column-setting-no-group">
+                    <input type="checkbox" class="ss-checkbox-directive"
+                           ng-model="col.checked" ng-disabled="col.unchecked" ss-label={{col.field}}>
+                </div>
+                <p class="columns-setting-modal-line-no-group"></p>
+
+                <div ng-repeat="col in rangeeee(20,100) track by $index" class="column-setting-no-group">
+                    <input type="checkbox" class="ss-checkbox-directive"
+                           ng-model="col.checked" ng-disabled="col.unchecked" ss-label={{col.field}}>
+                </div>
+                <p class="columns-setting-modal-line-no-group"></p>
+            </div>
+
+
+            <!--grid-columns-group-->
+            <div ng-if="columsSettingByGroup" class="ss-modal-body clearfix" align="left" style="margin-left: 42px;display: table">
+                <p class="ss-text-extra columns-setting-group-style">user</p>
+                <div ng-repeat="col in rangeeee(0,8)" class="column-setting-group">
+                    <input type="checkbox" class="ss-checkbox-directive" ng-model="col.checked" ng-disabled="col.unchecked" ss-label={{col.field}}>
+                </div>
+
+                <p class="ss-text-extra columns-setting-modal-line-group"></p>
+                <p class="ss-text-extra columns-setting-group-style">extra</p>
+                <div ng-repeat="col in rangeeee(8,16)" class="column-setting-group">
+                    <input type="checkbox" class="ss-checkbox-directive" ng-model="col.checked" ng-disabled="col.unchecked" ss-label={{col.field}}>
+                </div>
+                <p class="ss-text-extra columns-setting-modal-line-group"></p>
+            </div>
+            <div class="columns-unchecked-tooltip" ng-show="result">请至少选择1项</div>
+            <div class="ss-modal-footer" style="bottom: 20px">
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>

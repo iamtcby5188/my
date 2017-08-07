@@ -1,0 +1,43 @@
+@import './baseLess/color';
+
+search-criteria-ssr,
+search-criteria-common,
+panel-search-criteria {
+    >.inline-block {
+        display: inline-block;
+        margin-right: 20px;
+        .layout-wrap {
+            flex-wrap: nowrap;
+        }
+    }
+    .search-criteria-item {
+        .layout-align-start-center,
+        .layout-align-center-center,
+        .layout-align-end-center,
+        .layout-align-space-between-center,
+        .layout-align-space-around-center {
+            >label {
+                max-width: 100px;
+                text-align: right;
+            }
+            &:focus {
+                text-align: right;
+                outline: transparent auto 5px;
+            }
+        }
+    }
+    input-button-selector {
+        .md-button.md-ssAvalonUi-theme {
+            text-transform: none;
+            height: 24px;
+            min-height: 1rem;
+            min-width: 60px;
+            line-height: initial;
+            color: @ssTextSndColor;
+            &.md-warn.md-raised.active {
+                color: @ssBtnWarningColor;
+                background-color: @ssBtnWarningBgColor;
+            }
+        }
+    }
+}

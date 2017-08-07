@@ -1,0 +1,54 @@
+<div layout="row" class="panel-price">
+	<div class="container" layout="column" flex="50">
+		<div class="panel" layout="column" flex="25" ng-if="$even" ng-repeat="item in $ctrl.priceMargin"
+		     ng-class="{red: item.difference === 'RISE', green: item.difference === 'FALL', gray: item.difference === 'INVARIANT'}">
+			<div layout="row" layout-wrap flex="50">
+				<div class="name no-wrap">
+					{{ $ctrl.gridDataDefineService.BABQuotePriceType[item.quotePriceType] }}
+				</div>
+				<div flex></div>
+				<div class="spread text-right no-wrap" ng-if="!(item.minMargin === null && item.maxMargin === null)">
+					{{ item.minMargin + '~' + item.maxMargin }}
+					<small>bp</small>
+				</div>
+				<div class="spread text-right no-wrap" ng-if="item.minMargin === null && item.maxMargin === null">--
+				</div>
+			</div>
+			<div layout="row" layout-wrap flex="50">
+				<div class="straight no-wrap">
+					直贴：{{ (item.straightStickPrices.avgPrice | number:2) || "--"}}
+				</div>
+				<div flex></div>
+				<div class="posted text-right no-wrap">
+					转贴：{{( item.notesPostedPrices.avgPrice | number:2) || "--"}}
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="container" layout="column" flex="50">
+		<div class="panel" flex="25" layout="column" ng-if="$odd" ng-repeat="item in $ctrl.priceMargin"
+		     ng-class="{red: item.difference === 'RISE', green: item.difference === 'FALL', gray: item.difference === 'INVARIANT'}">
+			<div layout="row" layout-wrap flex="50">
+				<div class="name no-wrap">
+					{{ $ctrl.gridDataDefineService.BABQuotePriceType[item.quotePriceType] }}
+				</div>
+				<div flex></div>
+				<div class="spread text-right no-wrap" ng-if="!(item.minMargin === null && item.maxMargin === null)">
+					{{ item.minMargin + '~' + item.maxMargin }}
+					<small>bp</small>
+				</div>
+				<div class="spread text-right no-wrap" ng-if="item.minMargin === null && item.maxMargin === null">--
+				</div>
+			</div>
+			<div layout="row" layout-wrap flex="50">
+				<div class="straight no-wrap">
+					直贴：{{ (item.straightStickPrices.avgPrice |number:2)|| "--" }}
+				</div>
+				<div flex></div>
+				<div class="posted text-right no-wrap">
+					转贴：{{ (item.notesPostedPrices.avgPrice | number:2) || "--" }}
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

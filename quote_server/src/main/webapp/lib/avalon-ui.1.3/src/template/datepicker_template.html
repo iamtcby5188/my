@@ -1,0 +1,41 @@
+<div class="qbdatepickerRect">
+    <div class="globalCover" ng-show="showDatepicker" ng-click="datepickerDismiss()"></div>
+    <div class="inputRect">
+        <!-- ng-model-options="{ updateOn: 'blur' }" 可以通过设置变更parsers的触发时机不需要注册 ng-blur="blur()" -->
+        <input class="defaultDatePickerInput ss-input-text ss-input-text-sm {{pickerConfig.class}} {{showDatepicker&&!pickerConfig.readOnly?'inputable':''}}"
+               ng-class="{isEditing:isEditing === true}"
+               ng-focus="selectInput($event)"
+               ng-model="pickerDateString"
+               ng-model-options="{ updateOn: 'blur' }"
+               ng-blur="blur()"
+               ng-readonly="{{pickerConfig.readOnly}}"
+               ng-keydown="keydown($event)"
+               ng-click="initDatepicker()" />
+        <div class="rangeTipRect">
+            <div class="rangeTip" style="opacity:{{upperRangeTip||lowerRangeTip?'1':'0'}};width:{{upperRangeTip||lowerRangeTip?'auto':'0'}};">
+                <div class="angle"></div>
+                <div class="tip{{upperRangeTip?'':' ng-hide'}}">日期不能晚于{{upperRangeDate}}</div>
+                <div class="tip{{lowerRangeTip?'':' ng-hide'}}">日期不能早于{{lowerRangeDate}}</div>
+            </div>
+        </div>
+    </div>
+    <div class="qbdatepicker" ng-show="showDatepicker">
+        <div class="pickerHeader1">
+            <div class="headBox1 ml_5">
+                <input ng-model="currentYear" />
+                <dl><dd class="datepicker_arrow plus" ng-click="currentYear=currentYear+1"></dd><dd class="datepicker_arrow reduce" ng-click="currentYear-1>pickerConfig.yearMin?currentYear=currentYear-1:currentYear=pickerConfig.yearMin"></dd></dl>
+            </div><span class="headerLabel">&#24180</span>
+            <div class="headBox1 ml_15">
+                <input ng-model="currentMonth" />
+                <dl><dd class="datepicker_arrow plus" ng-click="currentMonth+1>12?currentMonth=1:currentMonth=currentMonth+1"></dd><dd class="datepicker_arrow reduce" ng-click="currentMonth-1<1?currentMonth=12:currentMonth=currentMonth-1"></dd></dl>
+            </div><span class="headerLabel">&#26376</span>
+        </div>
+        <div class="pickerHeader2"><span class="days">&#26085</span><span class="days">&#19968</span><span class="days">&#20108</span><span class="days">&#19977</span><span class="days">&#22235</span><span class="days">&#20116</span><span class="days">&#20845</span></div>
+        <div class="dateCellRect">
+            <!-- selectedDateInt==cell.timeStr?' isSelected':'' -->
+            <div class="dateCell{{cell.disable?'':' dateCellOn'}}{{cell.date==-1?' ng-hide':''}}{{todayDateInt==cell.timeStr?' isToday':''}}"
+                 ng-class="{'isSelected': cell.timeStr === selectedDateInt, 'isToday': cell.isToday}"
+                 ng-hide="cell.date==-1" ng-repeat="cell in dateCells track by $index" ng-click="selectDate(cell.timeStr,cell.date,cell.disable)">{{cell.date?cell.date:'&nbsp;'}}</div>
+        </div>
+    </div>
+</div>

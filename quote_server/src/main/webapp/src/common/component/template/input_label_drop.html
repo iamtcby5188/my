@@ -1,0 +1,15 @@
+<div layout="row" layout-align="start center">
+
+    <label ng-class="{'required': $ctrl.isRequired}" ng-if="!$ctrl.label" flex="{{$ctrl.labelFlex}}"></label>
+    <label ng-if="$ctrl.label" ng-class="{'required': $ctrl.isRequired}" ng-bind-template="{{$ctrl.label}}：" flex="{{$ctrl.labelFlex}}"></label>
+
+    <div class="input-container" flex="{{$ctrl.inputFlex}}" layout="row">
+        <input type="text" class="ss-input-text ss-input-text-sm" value="{{$ctrl.defaultStringValue}}" placeholder="{{$ctrl.placeholder}}"
+            ng-model="$ctrl.inputString" ng-change="$ctrl.onInputChange()" flex="66" />
+        <md-input-container class="md-block" flex="33">
+            <md-select ng-model="$ctrl.selectedItem" aria-label="{{$ctrl.label}}" ng-change="$ctrl.onDropChange()">
+                <md-option ng-repeat="item in $ctrl.itemSource" ng-value="item" ng-bind="item.$displayName"></md-option>
+            </md-select>
+        </md-input-container>
+    </div>
+</div>

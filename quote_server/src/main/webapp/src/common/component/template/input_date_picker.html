@@ -1,0 +1,10 @@
+<div layout="row">
+    <label ng-if="!$ctrl.label" flex="{{$ctrl.labelFlex}}"></label>
+    <label ng-if="$ctrl.label" ng-bind-template="{{$ctrl.label}}：" flex="{{$ctrl.labelFlex}}" ng-class="{'required': $ctrl.isRequired}"></label>
+
+    <div class="input-container" flex="{{$ctrl.inputFlex}}">
+        <input flex="{{$ctrl.getInputFlex()}}" class="ss-datepicker-directive" md-theme="{{$ctrl.theme}}" read-only="true" ng-model="$ctrl.ngModel"  vm-changed="$ctrl.onVmChanged()"
+            null-value-string="{{$ctrl.nullValueString}}" picker-config="$ctrl.pickerConfig"></input>
+        <label ng-if="$ctrl.isShowWeek" style="margin-top: 20px">{{$ctrl.getWeek()}}</input>
+    </div>
+</div>

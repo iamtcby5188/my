@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sumscope.bab.quote.mapping.SSRQuoteMapper">
+    <resultMap id="BaseResultMap"
+               type="com.sumscope.bab.quote.model.model.SSRQuoteModel">
+        <result column="ID" property="id" jdbcType="VARCHAR"/>
+        <result column="direction" property="direction"
+                typeHandler="com.sumscope.optimus.commons.databasetypehandler.EnumTypeHandler"/>
+        <result column="bill_type" property="billType"
+                typeHandler="com.sumscope.optimus.commons.databasetypehandler.EnumTypeHandler"/>
+        <result column="bill_medium" property="billMedium"
+                typeHandler="com.sumscope.optimus.commons.databasetypehandler.EnumTypeHandler"/>
+        <result column="memo" property="memo" jdbcType="VARCHAR"/>
+        <result column="quote_company_id" property="quoteCompanyId" jdbcType="VARCHAR"/>
+        <result column="contact_id" property="contactId" jdbcType="VARCHAR"/>
+        <result column="operator_id" property="operatorId" jdbcType="VARCHAR"/>
+        <result column="create_datetime" property="createDate" jdbcType="TIMESTAMP"/>
+        <result column="last_update_datetime" property="lastUpdateDate" jdbcType="TIMESTAMP"/>
+        <result column="effective_datetime" property="effectiveDate" jdbcType="TIMESTAMP"/>
+        <result column="expired_datetime" property="expiredDate" jdbcType="TIMESTAMP"/>
+        <result column="quote_status" property="quoteStatus"
+                typeHandler="com.sumscope.optimus.commons.databasetypehandler.EnumTypeHandler"/>
+        <result column="quote_price_type" property="quotePriceType"
+                typeHandler="com.sumscope.optimus.commons.databasetypehandler.EnumTypeHandler"/>
+        <result column="accpeting_house_id" property="acceptingHouseId" jdbcType="VARCHAR"/>
+        <result column="due_date" property="dueDate" jdbcType="TIMESTAMP"/>
+        <result column="price" property="price" jdbcType="DECIMAL"/>
+        <result column="amount" property="amount" jdbcType="DECIMAL"/>
+        <result column="province_code" property="provinceCode" jdbcType="VARCHAR"/>
+        <result column="base64_img" property="base64Img" jdbcType="VARCHAR"/>
+    </resultMap>
+
+
+    <select id="retrieveCompanyIDs" resultType="java.lang.String">
+        SELECT DISTINCT quote_company_id FROM ssr_quote WHERE quote_company_id IS NOT NULL
+    </select>
+
+    <select id="retrieveCompanyNames" resultType="java.lang.String">
+        SELECT DISTINCT company_name FROM bab_quote_addtional_info  WHERE company_name IS NOT NULL
+    </select>
+
+    <select id="retrieveByCondition" resultMap="BaseResultMap"
+            parameterType="com.sumscope.bab.quote.model.model.QueryQuotesParameterModel">
+        SELECT <include refid="baseQuotes"/>, quote_price_type, accpeting_house_id, due_date,
+        -- price 排序若price为null 给个默认值1000000000000.00
+        <choose>
+            <when test="orderByPriceType == 'price' and oderSeq == 'DESC'">
+                (CASE WHEN price is null then 1000000000000.00 else price end )price,
+            </when>
+            <otherwise>
+                price,
+            </otherwise>
+        </choose>
+        -- amount 排序若amount为null 给个默认值1000000000000.00
+        <choose>
+            <when test="orderByPriceType == 'amount' and oderSeq == 'DESC'">
+                (CASE WHEN amount is null then 1000000000000.00 else amount end )amount,
+            </when>
+            <otherwise>
+                amount,
+            </otherwise>
+        </choose>
+        province_code,base64_img
+        FROM ssr_quote
+        <if test="companyTypes != null">
+           LEFT JOIN bab_accpeting_company ON ssr_quote.accpeting_house_id = bab_accpeting_company.ID
+            AND bab_accpeting_company.bab_accpeting_company_type IN
+            <foreach item="item" index="index" collection="companyTypes"
+                     open="(" separator="," close=")">
+                #{item}
+            </foreach>
+        </if>
+        <if test="(billType!=null and billType.name() == 'CMB') or (memo != null and memo != '') or companyId != null">
+          LEFT JOIN bab_quote_addtional_info ON ssr_quote.ID = bab_quote_addtional_info.quote_id
+        </if>
+
+        WHERE
+        <if test="memo != null and memo != ''">
+            ( memo like CONCAT('%','${memo}','%' )  OR bab_quote_addtional_info.company_name like CONCAT('%','${memo}','%' )) AND
+        </if>
+        <if test="companyId != null">(quote_company_id=#{companyId} OR bab_quote_addtional_info.company_name =#{companyName} ) AND</if>
+        <if test="companyTypes != null">
+            (bab_accpeting_company.bab_accpeting_company_type IN
+            <foreach item="item" index="index" collection="companyTypes"
+                     open="(" separator="," close=")">
+                #{item}
+            </foreach> OR
+            <!-- 批量导入时-->
+            bab_quote_addtional_info.accpeting_house_type IN
+            <foreach item="item" index="index" collection="companyTypes"
+                     open="(" separator="," close=")">
+                #{item}
+            </foreach> ) AND
+        </if>
+
+        <if test="quotePriceTypeList != null">quote_price_type IN
+            <foreach item="item" index="index" collection="quotePriceTypeList"
+                     open="(" separator="," close=")">
+                #{item}
+            </foreach>
+            AND
+        </if>
+        <if test="amountList != null">
+            <foreach item="item" index="index" collection="amountList"
+                     open="(" separator="OR" close=")">
+                <![CDATA[
+             amount >= #{item.amountLow} AND amount <= #{item.amountHigh}
+            ]]>
+            </foreach>
+            AND
+        </if>
+        <if test="dueDateWrapperList != null">
+            <foreach item="item" index="index" collection="dueDateWrapperList"
+                     open="(" separator="OR" close=")">
+                <if test="item.dueDateBegin != null"> <![CDATA[ due_date >= #{item.dueDateBegin} ]]> AND</if>
+                <if test="item.dueDateEnd != null"> <![CDATA[ due_date <= #{item.dueDateEnd} ]]> </if>
+            </foreach>
+            AND
+        </if>
+        <if test="provinceCodes != null">province_code IN
+            <foreach item="item" index="index" collection="provinceCodes"
+                     open="(" separator="," close=")">
+                #{item}
+            </foreach>
+            AND
+        </if>
+
+        <if test="effectiveQuotesDate != null">
+            <![CDATA[
+             effective_datetime <= #{effectiveQuotesDate} AND ssr_quote.expired_datetime > #{effectiveQuotesDate}
+        ]]> AND
+        </if>
+        <if test="expiredQuotesDate != null"> <![CDATA[ ssr_quote.expired_datetime <= #{expiredQuotesDate} ]]> AND</if>
+        <include refid="queryBase"></include>
+        <include refid="orderAndLimit"></include>
+    </select>
+
+    <select id="retrieveByIDs" resultMap="BaseResultMap" parameterType="java.util.List">
+        SELECT * FROM ssr_quote
+        <include refid="IdIn"></include>
+    </select>
+
+    <insert id="insert" parameterType="java.util.List">
+        INSERT INTO
+        <include refid="ssrBaseQuote"></include>
+        VALUES
+        <foreach item="item" index="index" collection="list"
+                 open="" separator="," close="">
+            (
+            <include refid="ItemValue"></include>
+            #{item.quotePriceType}, #{item.acceptingHouseId}, #{item.dueDate}, #{item.price}, #{item.amount},
+            #{item.provinceCode}, #{item.base64Img}
+            )
+        </foreach>
+    </insert>
+
+    <update id="update" parameterType="com.sumscope.bab.quote.model.model.SSRQuoteModel">
+        UPDATE ssr_quote SET
+        <include refid="updateBaseQuote"></include>
+        quote_price_type=#{quotePriceType},
+        accpeting_house_id=#{acceptingHouseId},
+        due_date=#{dueDate},
+        price=#{price},
+        amount=#{amount},
+        <if test="base64Img != null">
+            base64_img = #{base64Img},
+        </if>
+        province_code=#{provinceCode}
+        WHERE ID=#{id}
+    </update>
+
+    <update id="updateStatus" parameterType="java.util.Map">
+        UPDATE ssr_quote SET quote_status=#{status}, last_update_datetime=#{updateTime}
+        <include refid="IdIn"></include>
+    </update>
+
+    <update id="flush">
+        UPDATE ssr_quote SET ID=ID WHERE ID=''
+    </update>
+
+    <!-- 图片数据不导入历史库 -->
+    <insert id="insertHistory" parameterType="com.sumscope.bab.quote.model.model.SSRQuoteModel">
+        INSERT INTO
+        <include refid="ssrBaseQuote"></include>
+        VALUES (
+        #{id}, #{direction}, #{billType}, #{billMedium}, #{memo}, #{quoteCompanyId},
+        #{contactId}, #{operatorId}, #{createDate}, #{lastUpdateDate}, #{effectiveDate},
+        #{expiredDate}, #{quoteStatus},
+        #{quotePriceType}, #{acceptingHouseId}, #{dueDate}, #{price}, #{amount}, #{provinceCode},null
+        )
+    </insert>
+
+    <delete id="deleteByIDs" parameterType="java.util.List">
+        DELETE FROM ssr_quote
+        <include refid="IdIn"></include>
+    </delete>
+
+    <delete id="deleteHistoryByID" parameterType="java.lang.String">
+            DELETE FROM ssr_quote
+            WHERE ID=#{id}
+        </delete>
+
+
+    <sql id="ssrBaseQuote">
+        ssr_quote (<include refid="baseQuote"/>, quote_price_type,accpeting_house_id, due_date, price, amount,
+        province_code,base64_img)
+    </sql>
+
+    <!--************************************************************************以下为SSR,SSC,NPC共享的代码段****************************************************************-->
+    <!--*********************************************************************************************************************************************************************-->
+    <!--*********************************************************************************************************************************************************************-->
+    <sql id="baseQuotes">
+        ssr_quote.ID,ssr_quote.direction,ssr_quote.bill_type,ssr_quote.bill_medium,ssr_quote.memo,ssr_quote.quote_company_id,ssr_quote.contact_id,
+        ssr_quote.operator_id,ssr_quote.create_datetime,ssr_quote.last_update_datetime,
+        ssr_quote.effective_datetime,ssr_quote.expired_datetime,ssr_quote.quote_status
+    </sql>
+
+    <sql id="baseQuote">
+        ID,direction,bill_type,bill_medium,memo,quote_company_id,contact_id,operator_id,create_datetime,last_update_datetime,
+        effective_datetime,expired_datetime,quote_status
+    </sql>
+
+    <sql id="queryBase">
+        <if test="billType != null">bill_type=#{billType} AND</if>
+        <if test="direction != null">direction=#{direction} AND</if>
+        <if test="billMedium != null">bill_medium=#{billMedium} AND</if>
+        <if test="userId != null">(contact_id=#{userId} OR operator_id=#{userId}) AND</if>
+        <if test="createTimeBegin != null"> <![CDATA[ create_datetime >= #{createTimeBegin} ]]> AND</if>
+        <if test="createTimeEnd != null"> <![CDATA[ create_datetime <= #{createTimeEnd} ]]> AND</if>
+        <if test="lastUpdateTimeBegin != null"> <![CDATA[ last_update_datetime >= #{lastUpdateTimeBegin} ]]> AND</if>
+        <if test="lastUpdateTimeEnd != null"> <![CDATA[ last_update_datetime <= #{lastUpdateTimeEnd} ]]> AND</if>
+        <if test="quoteStatusList != null">quote_status IN
+            <foreach item="item" index="index" collection="quoteStatusList"
+                     open="(" separator="," close=")">
+                #{item}
+            </foreach>
+        </if>
+    </sql>
+
+    <sql id="orderAndLimit">
+        <if test="orderByPriceType != null and oderSeq != null">
+            <if test="oderSeq == 'DESC'">
+                ORDER BY ${orderByPriceType} DESC
+            </if>
+            <if test="oderSeq == 'ASC'">
+                ORDER BY ${orderByPriceType} ASC
+            </if>
+        </if>
+        <if test="paging==true and pageSize != null and pageNumber != null">
+            limit #{startNum}, #{pageSize}
+        </if>
+    </sql>
+
+    <sql id="IdIn">
+        WHERE ID IN
+        <foreach item="item" index="index" collection="list"
+                 open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </sql>
+
+    <sql id="updateBaseQuote">
+        direction=#{direction},
+        bill_type=#{billType},
+        bill_medium=#{billMedium},
+        memo=#{memo},
+        quote_company_id=#{quoteCompanyId},
+        contact_id=#{contactId},
+        operator_id=#{operatorId},
+        last_update_datetime=#{lastUpdateDate},
+        <!-- 只有未发布的状态才能更改生效日和到期日，其他则不更改 -->
+        <choose>
+            <when test="quoteStatus != null and quoteStatus.getDbCode() == 'DFT'">
+                effective_datetime=#{effectiveDate},
+                expired_datetime = #{expiredDate},
+            </when>
+        </choose>
+        quote_status=#{quoteStatus},
+    </sql>
+
+    <sql id="ItemValue">
+        #{item.id}, #{item.direction}, #{item.billType}, #{item.billMedium}, #{item.memo}, #{item.quoteCompanyId},
+        #{item.contactId}, #{item.operatorId}, #{item.createDate}, #{item.lastUpdateDate}, #{item.effectiveDate},
+        #{item.expiredDate}, #{item.quoteStatus},
+    </sql>
+</mapper>

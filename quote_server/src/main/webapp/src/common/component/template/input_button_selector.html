@@ -1,0 +1,8 @@
+<div layout="row" layout-align="start center" ng-click="$ctrl.onClickItemButton($event)">
+    <label ng-if="!$ctrl.label && $ctrl.labelFlex !== 0" flex="{{$ctrl.labelFlex}}"></label>
+    <label ng-if="$ctrl.label" ng-bind-template="{{$ctrl.label}}：" flex="{{$ctrl.labelFlex}}"></label>
+    <div layout="row" flex="{{$ctrl.inputFlex}}" layout-wrap>
+        <md-button md-no-ink md-theme="{{$ctrl.theme}}" ng-if="$ctrl.hasSelectAllButton === 'true'" aria-label="selectAll" ng-class="{'md-raised md-warn active': $ctrl.isSelectAll}">全部</md-button>
+        <md-button md-no-ink tag="{{item.isDisabled}}" md-theme="{{$ctrl.theme}}" aria-label="item" ng-class="{'md-raised md-warn active': item.isChecked , 'disable-btn':item.isDisabled}" ng-disabled="item.isDisabled" ng-repeat="item in $ctrl.itemSource" ng-bind="item.$displayName"></md-button>
+    </div>
+</div>

@@ -1,0 +1,14 @@
+<div class="dialog-item">
+    <input-label md-theme="{{$ctrl.theme}}" ng-model="$ctrl.userInfo.joiningCompanyDto.name" is-required="true" is-readonly="readonly"
+        muti-line="{{item.mutiLine}}" label="报价方" label-flex="$ctrl.labelFlex" input-flex="$ctrl.inputFlex*0.75"></input-label>
+</div>
+
+<div class="dialog-item">
+    <drop-label md-theme="{{$ctrl.theme}}" ng-model="$ctrl.userInfo" is-required="true" label="联系人" vm-changed="$ctrl.onVmChanged()" is-readonly="{{$ctrl.isReadonly}}"
+        item-source="$ctrl.userInfoList" display-path="joiningUserDto.name" label-flex="$ctrl.labelFlex" input-flex="$ctrl.inputFlex*0.75"></drop-label>
+</div>
+
+<div class="dialog-item">
+    <input-label md-theme="{{$ctrl.theme}}" ng-model="$ctrl.userInfo.joiningUserDto.mobileTel" is-required="true" label="联系电话" label-flex="$ctrl.labelFlex"
+        is-readonly="readonly" input-flex="$ctrl.inputFlex*0.75"></input-label>
+</div>

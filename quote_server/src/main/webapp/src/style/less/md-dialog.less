@@ -1,0 +1,76 @@
+@import './baseLess/color';
+
+md-dialog.quote-dialog {
+	.md-dialog-content {
+		min-height: 350px;
+		label {
+			line-height: 38px;
+		}
+		.md-button {
+			background-color: #4b4d50;
+		}
+		input-button-selector button.md-button {
+			margin: 8px 4px;
+		}
+	}
+	.spilt-line-landscape {
+		margin: 8px 0px;
+	}
+	input-label-drop .input-container md-input-container {
+		margin: 0 0 0 6px;
+	}
+	.content-tips {
+		padding-left: 21px;
+	}
+	md-dialog-actions {
+		padding: 0px 24px;
+	}
+	.inputContainer {
+		line-height: 39px;
+	}
+	.dialog-add-price div.dialog-add-price-item:nth-of-type(10)>.spilt-line-landscape {
+		margin-bottom: 1px;
+	}
+}
+
+.content(@a, @b) {
+	.md-dialog-content {
+		> div:first-of-type {
+			margin-bottom: 10px;
+			//padding-left: @a;
+			input-button-switcher {
+				> div {
+					margin-left: @a;
+				}
+				label {
+					display: none;
+				}
+				button.md-button {
+					background-color: transparent;
+				}
+				button.md-button.md-ssAvalonUi-theme:not([disabled]):hover {
+					background-color: #292d2f;
+				}
+				button.md-button.md-ssAvalonUi-theme.active,
+				button.md-button.md-ssAvalonUi-theme.active:hover {
+					background-color: @ssBtnGrayActiveBgColor;
+				}
+			}
+		}
+		> div:nth-of-type(2) {
+			margin-left: @b;
+		}
+	}
+}
+
+md-dialog.quote-dialog.ssr-quote {
+	.content(120px, 0px);
+}
+
+md-dialog.quote-dialog.ssc-quote {
+	.content(70px, 303px);
+}
+
+md-dialog.quote-dialog.npc-quote {
+	.content(200px, 330px);
+}

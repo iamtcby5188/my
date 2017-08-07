@@ -1,0 +1,78 @@
+@import './baseLess/color';
+
+home {
+	div.flex-100 {
+		background-color: @ssBgExtColor;
+	}
+	md-nav-bar.md-ssAvalonUi-theme {
+		margin-top: 2px;
+		.md-nav-item:first-of-type {
+			margin: 0px;
+		}
+		.md-nav-bar {
+			height: auto;
+		}
+		.md-button._md-nav-button {
+			padding: 8px 39px;
+			margin: 0px;
+		}
+		._md-nav-bar-list ._md-nav-button.md-unselected:hover {
+			background-color: @ssBtnHoverBgColor;
+		}
+	}
+	panel-accordion {
+		.md-button.md-ssAvalonUi-theme:not([disabled]):hover {
+			background-color: @ssBtnHoverBgColor;
+		}
+		div.content-landscape {
+			padding-bottom: 10px;
+		}
+		button.md-button {
+			margin: 3px 4px;
+		}
+		input-dropdown-chips md-chips .md-chips .md-chip-input-container {
+			margin: 3px 4px;
+		}
+		input-dropdown-chips div.layout-row > label {
+			line-height: 30px;
+		}
+		.spilt-line-landscape {
+			height: 10px;
+			background-color: @ssBgExtColor;
+		}
+		.content-landscape {
+			padding-top: 10px;
+			background-color: @ssBgExtColor;
+		}
+	}
+	manage-ssr-ticket-hall {
+		search-criteria-common {
+			> div {
+				margin: 7px 0px;
+			}
+		}
+		panel-search-pricemng {
+			button.md-button {
+				margin: 6px 5px;
+			}
+			md-autocomplete {
+				margin-right: 5px;
+			}
+			> div {
+				margin: 2px 0px 6px 0px;
+			}
+		}
+	}
+	manage-ssc-ticket-hall,
+	manage-npc-ticket-hall {
+		panel-search-pricemng {
+			> div {
+				margin: 2px 0px 10px 0px;
+			}
+		}
+	}
+	list-ssc-ticket-hall > div:first-of-type,
+	list-npc-ticket-hall > div:first-of-type {
+		padding: 10px 0px 5px 0px;
+	}
+}

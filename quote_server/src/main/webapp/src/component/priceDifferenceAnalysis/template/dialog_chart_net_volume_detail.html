@@ -1,0 +1,16 @@
+<div class="dialog-chart-net-volume-detail" layout="column">
+    <span>{{$ctrl.dataSource.date}}</span>
+    <span class="high-light">净投放 : {{$ctrl.dataSource.netVolume}}</span>
+    <div class="spilt-row"></div>
+
+    <span class="high-light">投放量 : {{$ctrl.dataSource.openMarketVolume}}</span>
+    <span>央票到期 : {{$ctrl.dataSource.centralTicketExpires}}</span>
+    <span>正回购到期 : {{$ctrl.dataSource.repoMaturity}}</span>
+    <span>逆回购操作 : {{$ctrl.dataSource.reverseRepurchaseOperation}}</span>
+    <div class="spilt-row"></div>
+
+    <span class="high-light">回笼量 : {{$ctrl.dataSource.withdrawalFromCirculation}}</span>
+    <span>央行发行 : {{$ctrl.dataSource.centralIssueOfVotes}}</span>
+    <span>正回购操作 : {{$ctrl.dataSource.positiveBuyBackOperation}}</span>
+    <span>逆回购到期 : {{$ctrl.dataSource.reverseRepoMaturity}}</span>
+</div>

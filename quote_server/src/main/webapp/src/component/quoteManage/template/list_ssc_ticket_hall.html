@@ -1,0 +1,42 @@
+<div layout="row">
+	<search-criteria-common md-theme="{{$ctrl.theme}}" item-source="vm.searchCriteriaDefine" ng-model="vm.searchCriteria" ng-change="$ctrl.onSearchCriteriaChanged()"></search-criteria-common>
+</div>
+<div layout="row" class="list_ssc_container">
+	<md-button md-no-ink class="md-raised md-primary md-button md-ink-ripple import" ng-if="$ctrl.importAuth" ng-click="$ctrl.onClickImport($event)">批量导入</md-button>
+	<md-button md-no-ink class="md-raised md-primary md-button md-ink-ripple animation-target-addprice" ng-click="$ctrl.addPrice($event)">我要发价</md-button>
+	<span class="network-state">
+		<span ng-class="{green:networkState === '良好', red:networkState === '断开'}"></span> 网络{{ networkState }}
+	</span>
+	<!--<div class="input-container">
+        <input class="ss-datepicker-directive" md-theme="{{$ctrl.theme}}" read-only="true" ng-model="$ctrl.date"></input>
+    </div>-->
+	<span flex></span>
+	<div class="auto-complete-container">
+		<input-auto-complete md-theme="{{$ctrl.theme}}" search-fun="$ctrl.doSearch(content)" is-async="true" ng-model="$ctrl.searchObj"
+			display-path="name" placeholder="发价方、备注"></input-auto-complete>
+	</div>
+	<div id="quoteRemind" ng-if="isReconnect" class="quote-remind" ng-click="$ctrl.onClickGridRefresh()">
+		网络重新连接，点击刷新！
+	</div>
+</div>
+
+<grid-ticket-hall-ssc search-criteria="{searchCriteria:vm.searchCriteria,input:$ctrl.searchObj}"></grid-ticket-hall-ssc>
+
+<panel-title-container md-theme="{{$ctrl.theme}}" titles="$ctrl.footTitles" ng-model="$ctrl.selectChartPage" ng-change="$ctrl.onSelectChartPage()"
+    ng-switch="$ctrl.selectChartPage">
+
+    <div class="chartVm_current" ng-switch-when="current">
+        <matrix-table-manage item-source="$ctrl.chartVm.currentItemSource"></matrix-table-manage>
+    </div>
+
+    <div ng-switch-when="tendency">
+        <input-button-selector ng-if="$ctrl.chartVm.billTypeMedium.billType !== 'CMB'" md-theme="{{$ctrl.theme}}" ng-model="$ctrl.chartVm.quotePriceType"
+            ng-change="$ctrl.onSearchCriteriaChanged()" vm-changed="" label="承兑行类别" vm-type="Object" has-select-all-button="false"
+            item-source="$ctrl.chartVm.qptItemSource.other" display-path="name" label-flex=10></input-button-selector>
+        <input-button-selector ng-if="$ctrl.chartVm.billTypeMedium.billType === 'CMB'" md-theme="{{$ctrl.theme}}" ng-model="$ctrl.chartVm.quotePriceType"
+            ng-change="$ctrl.onSearchCriteriaChanged()" vm-changed="" label="保函" vm-type="Object" has-select-all-button="false"
+            item-source="$ctrl.chartVm.qptItemSource.CMB" display-path="name" label-flex=10></input-button-selector>
+        <chart-manage chart-data="$ctrl.chartVm.chartData"></chart-manage>
+    </div>
+</panel-title-container>
+

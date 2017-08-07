@@ -1,0 +1,80 @@
+<div class="calCantiner">
+    <div>
+        <div layout = "row">
+            <div class = "left-container" flex = "50">
+                <input-label is-required='true' md-theme="{{$ctrl.theme}}" label="票面金额(元)" ng-model="$ctrl.comCondition.billAmount" label-flex = "40" input-flex="70"></input-label>
+            </div>
+            <div flex = "50">
+                <input-date-picker is-show-week='true' is-required='true' null-value-string="请选择日期" md-theme="{{$ctrl.theme}}" label="到期日" ng-model="$ctrl.comCondition.dueDate" label-flex = "30" input-flex="70"></input-date-picker>
+            </div>
+        </div>
+    </div>
+    <div class="spilt-line-landscape"> </div>
+    <div>
+        <div layout = "row" >
+            <div layout = "column" class = "left-container" flex = "70">
+                <input-date-picker is-show-week='true' md-theme="{{$ctrl.theme}}" null-value-string="请选择日期" label="交易日1" ng-model="$ctrl.condition1.tradeDate" label-flex = "30" input-flex="50"></input-date-picker>
+                <input-label md-theme="{{$ctrl.theme}}" placeholder="节假日加天需自行调整" label="调整天数" ng-model="$ctrl.condition1.adjustDay" label-flex = "30" input-flex="50"></input-label>
+                <input-label-drop md-theme="{{$ctrl.theme}}" label="利率1" ng-model="$ctrl.condition1.price" label-flex = "30" input-flex="50" item-source="$ctrl.dropList"></input-label-drop>
+            </div>
+            <div layout = "column" class = "right-container" flex = "30">
+                <div class="label-show" layout = "row">
+                    <label>计息天数(天) :</label>
+                    <span>{{($ctrl.calResult.firstDetailsResponse && $ctrl.calResult.firstDetailsResponse.accrualDays !== null)? $ctrl.calResult.firstDetailsResponse.accrualDays : "--" }}</span>
+                </div>
+
+                <div class="label-show" layout = "row">
+                    <label>贴现利息(元) :</label>
+                    <span>{{($ctrl.calResult.firstDetailsResponse && $ctrl.calResult.firstDetailsResponse.discountInterest !== null)? $ctrl.calResult.firstDetailsResponse.discountInterest : "--" | number}}</span>
+                </div>
+                
+                <div class="label-show" layout = "row">
+                    <label>贴现金额(元) :</label>
+                    <span>{{($ctrl.calResult.firstDetailsResponse &&$ctrl.calResult.firstDetailsResponse.discountAmount !== null)? $ctrl.calResult.firstDetailsResponse.discountAmount : "--" | number}}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="spilt-line-landscape"> </div>
+    <div>
+        <div layout="row" >
+            <div layot = "column" flex = "70" class = "left-container">
+                <input-date-picker is-show-week='true' md-theme="{{$ctrl.theme}}" null-value-string="请选择日期" label="交易日2" ng-model="$ctrl.condition2.tradeDate" label-flex = "30" input-flex="50"></input-date-picker>
+                <input-label md-theme="{{$ctrl.theme}}" placeholder="节假日加天需自行调整" label="调整天数" ng-model="$ctrl.condition2.adjustDay" label-flex = "30" input-flex="50"></input-label>
+                <input-label-drop md-theme="{{$ctrl.theme}}" label="利率2" ng-model="$ctrl.condition2.price" label-flex = "30" input-flex="50" item-source="$ctrl.dropList"></input-label-drop>
+            </div>
+            <div layot = "column" flex = "30" class = "right-container">
+                <div class="label-show" layout = "row">
+                    <label>计息天数(天) :</label>
+                    <span>{{ ($ctrl.calResult.secondDetailsResponse && $ctrl.calResult.secondDetailsResponse.accrualDays !== null)? $ctrl.calResult.secondDetailsResponse.accrualDays : "--" }}</span>
+                </div>
+                <div class="label-show" layout = "row">
+                    <label>贴现利息(元) :</label>
+                    <span>{{($ctrl.calResult.secondDetailsResponse && $ctrl.calResult.secondDetailsResponse.discountInterest !== null)? $ctrl.calResult.secondDetailsResponse.discountInterest : "--" | number}}</span>
+                </div>
+                <div class="label-show" layout = "row">
+                    <label>贴现金额(元) :</label>
+                    <span>{{($ctrl.calResult.secondDetailsResponse && $ctrl.calResult.secondDetailsResponse.discountAmount !== null)? $ctrl.calResult.secondDetailsResponse.discountAmount : "--" | number}}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="spilt-line-landscape"> </div>
+    <div>
+        <div layout = "row" class ="label-show">
+            <div layout = "row" flex = "60">
+                <label flex="30" >点差(BP) : </label>
+                <span flex>{{$ctrl.calResult.margin !== null?$ctrl.calResult.margin:"--"}}</span>
+            </div>
+            <div layout = "row" flex = "40">
+                <label flex="35">交易差额(元) : </label>
+                <span flex>{{$ctrl.calResult.tradeMarginAmount !== null?$ctrl.calResult.tradeMarginAmount : "--" | number}}</span>
+            </div>
+        </div>
+    </div>
+	<div layout="row" class="action-toolbar">
+		<md-button md-no-ink class="md-raised md-primary" md-theme="{{$ctrl.theme}}" ng-click="$ctrl.onClickReset($event)" style="margin-left: 30px;">重置</md-button>
+		<span flex></span>
+		<md-button md-no-ink class="md-raised md-primary" md-theme="{{$ctrl.theme}}" ng-click="$ctrl.onClickCal($event)" style="margin-right: 30px;">计算</md-button>
+	</div>
+</div>

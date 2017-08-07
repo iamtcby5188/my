@@ -1,0 +1,15 @@
+<panel-accordion class="row-1">
+    <search-criteria-ssr md-theme="{{$ctrl.theme}}" item-source="vm.searchCriteriaDefine" ng-model="vm.searchCriteria"></search-criteria-ssr>
+</panel-accordion>
+
+<!--<div layout="row">
+    <md-button class="md-raised md-primary" aria-label="test button" ng-click="$ctrl.onClickTest($event)">test</md-button>
+    <md-button class="md-raised md-primary" aria-label="clear tton" ng-click="$ctrl.onClickClear($event)">Clear</md-button>
+    <md-button class="md-raised md-primary" aria-label="Save button" ng-click="$ctrl.onClickSave($event)">Save</md-button>
+    <md-button class="md-raised md-primary" aria-label="Load button" ng-click="$ctrl.onClickLoad($event)">Load</md-button>
+</div>-->
+
+<!--Use Grid list: https://material.angularjs.org/latest/demo/gridList-->
+<!--<md-grid-list></md-grid-list>-->
+<grid-ticket-hall-ssr  md-theme="{{$ctrl.theme}}" click-add-price="$ctrl.onClickAddPrice($event)" search-criteria="vm.searchCriteria"
+    is-view-busy="$ctrl.$viewBusy" init-data="$ctrl.$scope.initData"></grid-ticket-hall-ssr>

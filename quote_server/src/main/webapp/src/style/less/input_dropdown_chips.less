@@ -1,0 +1,76 @@
+@import './baseLess/color';
+input-dropdown-chips {
+    @componentItemHeight : 1.5rem;
+    @componentItemMargin: 6px 8px;
+    @chipRemoveButton: {
+        width: 1.5rem;
+        height: @componentItemHeight;
+    }
+    ;
+    div.layout-row > label {
+        text-align: right;
+        color: @ssTextExtColor;
+        line-height: 36px;
+    }
+    md-chips {
+        .md-chips {           
+            md-chip {
+                height: @componentItemHeight;
+                line-height: @componentItemHeight;
+                margin: @componentItemMargin;
+                .md-chip-remove {
+                    @chipRemoveButton();
+                }
+            }
+            .md-chip-input-container {
+                margin: @componentItemMargin;
+                &:not(:first-child) {
+                    margin: @componentItemMargin;
+                }
+                input,
+                md-autocomplete,
+                md-autocomplete-wrap {
+                    height: @componentItemHeight;
+					line-height: @componentItemHeight;
+                }
+            }
+        }
+        &.md-ssAvalonUi-theme {
+            &md-contact-chips{
+                margin: 0;
+            }
+            .md-chips {
+                &.md-focused {
+                    box-shadow: 0 2px transparent;
+                }
+                md-chip {
+                    color: @ssBtnWarningColor;
+                    background-color: @ssBtnWarningBgColor;
+                    &.md-focused md-icon {
+                        color: @ssBtnWarningColor;
+                    }
+                    .md-chip-remove {
+                        &:hover {
+                            background-color: @ssBtnWarningHoverBgColor
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.md-ssAvalonUi-theme {
+    &.md-autocomplete-suggestions-container li {
+        color: @ssInputColor;
+    }
+    .md-autocomplete-suggestions li {
+        height: 2rem;
+        line-height: 2rem;
+        >div,
+        >div>span {
+            height: 2rem;
+            line-height: 2rem;
+        }
+    }
+}

@@ -1,0 +1,7 @@
+<panel-search-pricemng md-theme="{{$ctrl.theme}}" item-source="vm.searchPanelData" ng-model="vm.ngModel.searchPanelModel"
+    btn-click="$ctrl.onBtnClick($event, dataDefine)" tab-changed="$ctrl.onTabChanged(tabCode)" input-search="$ctrl.onInputSearch(content)"></panel-search-pricemng>
+<search-criteria-common md-theme="{{$ctrl.theme}}" item-source="vm.searchCriteriaDefine" ng-model="vm.ngModel.searchCriteria"></search-criteria-common>
+<grid-manage-ssr-ticket-hall search-criteria="{searchPanelModel:vm.ngModel.searchPanelModel,searchCriteria:vm.ngModel.searchCriteria}"
+   edit-list-item="$ctrl.onEditListItem($event, item)" 
+   publish-list-item="$ctrl.onPublishListItem($event, item)"
+   del-list-item="$ctrl.onDelListItem($event, item)"></grid-manage-ssr-ticket-hall>

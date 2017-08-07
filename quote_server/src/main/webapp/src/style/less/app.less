@@ -1,0 +1,76 @@
+﻿// @color #fff;
+@import './baseLess/color';
+body {
+    // background: @backgroundColor;
+    // color: @color;
+    font-family: Microsoft YaHei;
+    overflow: hidden;
+    font-size: 14px;
+}
+
+a {
+    color: #03A9F4;
+}
+
+footer {
+    text-align: center;
+    font-size: 14px;
+}
+
+app>div {
+    height: 100%;
+    width: 100%;
+}
+
+home md-fab-toolbar.md-is-close {
+    width: 80%;
+    position: fixed;
+    z-index: 10;
+}
+
+::-webkit-input-placeholder { /* WebKit browsers */
+    color: @ssTextExtColor;
+}
+
+@media (max-width: 599px) {
+    home md-fab-toolbar.md-is-close {
+        width: 100%;
+    }
+}
+/****这个项目中的datepicker默认都不需要提示，这个是datepicker的控件的bug，暂时通过这种方式隐藏****/
+.ss-datepicker-directive .inputRect .datepicker-no-tip + div.rangeTipRect {
+		display: none;
+}
+
+/******************************************************************************************************/
+
+
+/* scrollbar */
+
+
+/******************************************************************************************************/
+
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+    background-color: rgba(0, 0, 0, 0);
+    border-radius: 100px;
+    -webkit-border-radius: 100px;
+}
+
+ ::-webkit-scrollbar:hover {
+    background-color: rgba(0, 0, 0, 0.09);
+}
+
+::-webkit-scrollbar-thumb:vertical,
+ ::-webkit-scrollbar-thumb:vertical:active,
+::-webkit-scrollbar-thumb:horizontal,
+ ::-webkit-scrollbar-thumb:horizontal:active {
+    background: #2a3733;
+    border-radius: 100px;
+    -webkit-border-radius: 100px;
+}
+
+::-webkit-scrollbar-corner {
+    background: transparent;
+}

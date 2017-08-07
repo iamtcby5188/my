@@ -1,0 +1,7 @@
+<div class="content-landscape" ng-class="{'panel-open': $ctrl.isPanelOpen, 'panel-close': !$ctrl.isPanelOpen}" ng-transclude></div>
+
+<div class="spilt-line-landscape">
+    <div class="toggle-button" ng-click="$ctrl.toggleOpenClose($event)">
+        <span ng-bind="$ctrl.isPanelOpen?'&#9650':'&#9660'"></span>
+    </div>
+</div>

@@ -1,0 +1,10 @@
+<div layout="row" layout-align="start center" class="flex">
+    <label ng-bind-template="{{$ctrl.label}}："></label>
+    <div layout="row" layout-wrap layout-align="start center">
+        <input-button-selector md-theme="{{$ctrl.theme}}" flex="{{$ctrl.selectorFlex.flex}}" has-select-all-button="{{$ctrl.hasSelectAllButton}}"
+            vm-changed="$ctrl.onSelectorChanged()" item-source="$ctrl.itemSource.selectorValue" display-path="{{$ctrl.displayPath}}"
+            ng-model="$ctrl.selectorValue"></input-button-selector>
+        <input-range flex="{{$ctrl.rangeFlex.flex}}" ctrl-flex="$ctrl.rangeFlex.ctrl" vm-changed="$ctrl.onRangeChanged()" item-source="$ctrl.itemSource.rangeValue"
+            ng-model="$ctrl.rangeValue"></input-range>
+    </div>
+</div>

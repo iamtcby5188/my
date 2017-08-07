@@ -1,0 +1,19 @@
+<div layout="column">
+
+    <div layout="row">
+        <div>
+            <input-button-selector md-theme="{{$ctrl.theme}}" ng-model="$ctrl.billTypeMedium" vm-changed="$ctrl.onVmChanged()" has-select-all-button="false"
+                item-source="$ctrl.billTypeMediumItemSource" no-Label="true" vm-type="Object"></input-button-selector>
+        </div>
+        <div>
+            <input-button-selector md-theme="{{$ctrl.theme}}" ng-model="$ctrl.unit" vm-changed="$ctrl.onVmChanged()" has-select-all-button="false"
+                item-source="$ctrl.unitItemSource" input-flex="$ctrl.inputFlex" vm-type="Object"></input-button-selector>
+        </div>
+    </div>
+
+    <div class="dialog-add-price-item" ng-repeat="item in $ctrl.itemSource">
+        <input-label md-theme="{{$ctrl.theme}}" ng-model="item.attribute.ngModel" vm-changed="$ctrl.onVmChanged()" is-required="{{item.attribute.isRequired}}"
+            is-disabled="{{item.attribute.isDisabled}}" is-readonly="{{item.attribute.isReadonly}}" muti-line="{{item.mutiLine}}"
+            label="{{item.attribute.label}}" item-source="item.attribute.itemSource" label-flex="$ctrl.labelFlex" input-flex="item.attribute.inputFlex || $ctrl.inputFlex*0.75"></input-label>
+    </div>
+</div>

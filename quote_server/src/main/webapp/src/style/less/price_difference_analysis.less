@@ -1,0 +1,85 @@
+@import './baseLess/color';
+
+.overflow-y-auto {
+	overflow-y: auto;
+}
+
+price-difference-analysis {
+	& > div {
+		background-color: #121212;
+		bar-nav {
+			background-color: @ssBgSndColor;
+			margin-bottom: 10px;
+		}
+	}
+
+	panel-title-container {
+		padding: 0 5px;
+		align-self: baseline;
+		md-dialog.md-ssAvalonUi-theme {
+			min-width: 200px;
+			.dialog-chart-net-volume-detail {
+				color: @ssTextSndColor;
+				background-color: @charPointDetailBgColor;
+				border: 1px solid @charPointDetailBorderColor;
+				padding: 12px 16px;
+				.high-light {
+					color: @textGoldColor;
+				}
+				> span,
+				.spilt-row {
+					line-height: 24px;
+					padding: 0 2px;
+				}
+				> .spilt-row {
+					border-top: 2px solid @charPointDetailSpiltRowColor;
+				}
+			}
+		}
+	}
+	bar-nav > div > md-nav-bar.md-ssAvalonUi-theme > .md-nav-bar {
+		height: 40px;
+		margin-bottom: 10px;
+	}
+	bar-nav > div > md-nav-bar.md-ssAvalonUi-theme .md-nav-bar li > .md-button._md-nav-button {
+		padding: 8px 6px;
+	}
+	.header-row > panel-title-container {
+		.ui-grid, .panel-price {
+			padding: 0;
+			height: 365px;
+			.ui-grid-cell-contents {
+				line-height: 30px;
+			}
+		}
+		md-nav-bar.md-ssAvalonUi-theme .md-nav-bar li > .md-button._md-nav-button {
+			padding: 0 6px;
+			min-width: 44px;
+		}
+	}
+	.header-row {
+		margin-bottom: 10px;
+	}
+	chart-price-history, chart-net-volume-history {
+		.chart_container {
+			padding: 20px 0px;
+		}
+	}
+	#chart_net_volume_history {
+		height: 540px;
+	}
+	#chart_price_history {
+		height: 480px;
+	}
+
+	@media screen and (min-width: 1326px) and (max-width: 1336px) {
+		#chart_net_volume_history {
+			height: 578px;
+		}
+	}
+	@media screen and (max-width: 1325px) {
+		#chart_net_volume_history {
+			height: 594px;
+		}
+	}
+}

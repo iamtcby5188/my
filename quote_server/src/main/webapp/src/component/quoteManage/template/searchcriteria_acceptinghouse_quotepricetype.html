@@ -1,0 +1,11 @@
+<div class="search-criteria-item" ng-if="$ctrl.vmType === 'quotePriceType'">
+    <input-button-selector md-theme="{{$ctrl.theme}}" ng-model="$ctrl.quotePriceType" vm-changed="$ctrl.onVmChanged()" label="承兑行类别"
+        has-select-all-button="true" item-source="$ctrl.quotePriceTypeItemSource" display-path="name" label-flex="$ctrl.labelFlex"
+        input-flex="$ctrl.inputFlex"></input-button-selector>
+</div>
+
+<div class="search-criteria-item" ng-if="$ctrl.vmType === 'acceptingHouse'">
+    <input-button-selector md-theme="{{$ctrl.theme}}" ng-model="$ctrl.acceptingHouse" vm-changed="$ctrl.onVmChanged()" label="承兑方类别"
+        has-select-all-button="true" item-source="$ctrl.acceptingHouseItemSource" display-path="name" label-flex="$ctrl.labelFlex"
+        input-flex="$ctrl.inputFlex"></input-button-selector>
+</div>

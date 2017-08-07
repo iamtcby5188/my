@@ -1,0 +1,41 @@
+@import './baseLess/color';
+input-selector-range {
+    div.layout-row > label{
+        text-align: right;
+        color: @ssTextExtColor;   
+        min-width: 100px;
+    }
+
+    input-button-selector{
+        min-width: 440px;
+        margin-left: -100px;
+    }
+
+    input-range{
+        margin-left: 8px;
+        label{
+            min-width: 100px;
+        }
+
+        input{
+            min-width: 70px;
+        }
+
+        md-select{
+            margin:0 10px;
+            min-width: 66px;
+            .md-select-value .md-select-icon{
+                margin-left: -32px;
+            }
+        }
+
+        > div > div > button.md-button{
+			margin: 0px;
+        }
+
+		> div > span{
+			margin: 0 5px;
+		}
+    }
+}
+

@@ -1,0 +1,8 @@
+[
+  {
+    "outputFileName": "src/component/priceDifferenceAnalysis/chart_price_history.min.js",
+    "inputFiles": [
+      "src/component/priceDifferenceAnalysis/chart_price_history.js"
+    ]
+  }
+]

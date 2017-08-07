@@ -1,0 +1,62 @@
+@import './baseLess/color';
+panel-accordion,
+panel-accordion.landscape {
+    .content-landscape {
+        overflow: hidden;
+        &.panel-open {
+            height: auto;
+        }
+    }
+    .spilt-line-landscape {
+        border-top: 2px solid @ssBgPmrColor;
+        text-align: center;
+    }
+    .toggle-button {
+        background: @ssBgPmrColor;
+        color: @ssTextSndColor;
+        cursor: pointer;
+        height: 20px;
+        outline: none;
+        display: inline-block;
+        height: 10px;
+        width: 45px;
+        border-radius: 0 0 5px 5px;
+        >span {
+            font-size: 0.5rem;
+            top: -8px;
+            position: relative;
+            transform: scaleY(0.5);
+            display: inline-flex;
+        }
+    }
+}
+
+panel-accordion.row-1,
+panel-accordion.landscape.row-1 {
+    .content-landscape {
+        &.panel-open {
+            height: auto;
+        }
+        &.panel-close {
+            height: 22px;
+        }
+    }
+}
+
+@keyframes landscape-open {
+    0% {
+        height: 0;
+    }
+    100% {
+        height: auto;
+    }
+}
+
+@keyframes landscape-close {
+    0% {
+        height: auto;
+    }
+    100% {
+        height: 0;
+    }
+}

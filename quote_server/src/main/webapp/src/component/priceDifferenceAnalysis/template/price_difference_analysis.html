@@ -1,0 +1,28 @@
+<div md-theme="{{ $ctrl.theme }}" ng-click="$ctrl.test($event)">
+    <bar-nav md-theme="{{$ctrl.theme}}" ng-model="$ctrl.selItem" item-source="$ctrl.barItem" tab-changed="$ctrl.onTabChanged(tabCode)"
+        display-path="name"></bar-nav>
+
+        <div class="header-row" layout="row" layout-align="start center">
+            <panel-title-container md-theme="{{$ctrl.theme}}" flex="25" type="dark" titles="'直转利差'">
+                <panel-price-spread md-theme="{{$ctrl.theme}}" price-margin="$ctrl.priceMarginResp.priceMargin"></panel-price-spread>
+            </panel-title-container>
+            <panel-title-container md-theme="{{$ctrl.theme}}" flex="25" type="dark" titles="'直贴价格'">
+                <grid-ssc-price md-theme="{{$ctrl.theme}}" item-source="$ctrl.priceMarginResp.currentPriceTrendsSSC"></grid-ssc-price>
+            </panel-title-container>
+            <panel-title-container md-theme="{{$ctrl.theme}}" flex="25" type="dark" titles="'转贴价格'">
+                <grid-npc-price md-theme="{{$ctrl.theme}}" item-source="$ctrl.priceMarginResp.currentPriceTrendsNPC"></grid-npc-price>
+            </panel-title-container>
+            <panel-title-container md-theme="{{$ctrl.theme}}" flex="25" type="dark" titles="'SHIBOR'">
+                <grid-shibor-price md-theme="{{$ctrl.theme}}" item-source="$ctrl.priceMarginResp.currentShiborPrice"></grid-shibor-price>
+            </panel-title-container>
+        </div>
+
+        <div class="foot-row" layout="row" layout-align="start center">
+            <panel-title-container md-theme="{{$ctrl.theme}}" flex="50" titles="'直转贴价格走势'" >
+                <chart-price-history md-theme="{{$ctrl.theme}}" chart-data="$ctrl.chartVm.priceHistory" bill-medium="$ctrl.selItem"></chart-price-history>
+            </panel-title-container>
+            <panel-title-container md-theme="{{$ctrl.theme}}" flex="50" titles="'公开市场净投放'">
+                <chart-net-volume-history md-theme="{{$ctrl.theme}}" chart-data="$ctrl.chartVm.netVolumeHistory"></chart-net-volume-history>      
+            </panel-title-container>
+        </div>
+</div>

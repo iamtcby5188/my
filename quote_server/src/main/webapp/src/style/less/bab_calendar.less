@@ -1,0 +1,76 @@
+@import "./baseLess/color";
+
+.calendar-container {
+	height: 100%;
+	padding: 10px;
+	color: #FFEBC8;
+	.text-center {
+		text-align: center;
+	}
+	.calendar-left {
+		background-color: #232628;
+		padding: 20px;
+		.calendar-left-top {
+			height: 200px;
+			border-bottom: 1px solid #333739;
+			.residual {
+				height: 100px;
+				line-height: 100px;
+				.time {
+					color: #f9c66e;
+					font-size: 68px;
+				}
+				.day {
+					color: #7b8082;
+					font-size: 14px;
+				}
+			}
+			.date {
+				color: #FFEBC8;
+				font-size: 24px;
+				height: 50px;
+				line-height: 50px;
+			}
+			.year {
+				color: #FFEBC8;
+				font-size: 14px;
+			}
+		}
+		.calendar-left-bottom {
+			margin-top: 20px;
+		}
+		.hint {
+			color: #7b8082;
+			margin-top: 30px;
+			span {
+				vertical-align: top;
+			}
+			.ss-icon-help-normal {
+				display: inline-block;
+			}
+		}
+	}
+	.calendar-right {
+		height: 100%;
+		margin-left: 10px;
+		.title {
+			border-bottom: 2px solid #0d7b7b;
+			height: 27px;
+		}
+		.date-label {
+			background-color: #0d7b7b;
+			width: 100px;
+			height: 26px;
+			line-height: 26px;
+			border-radius: 2px 2px 0 0;
+		}
+		.end-time, .start-time {
+			height: 50%;
+			margin: 0px 20px;
+			line-height: 26px;
+		}
+		md-select {
+			margin: 0px 5px;
+		}
+	}
+}

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sumscope.bab.quote.mapping.AcceptingCompanyMapper">
+    <resultMap id="BaseResultMap"
+               type="com.sumscope.bab.quote.model.model.AcceptingCompanyModel">
+        <result column="ID" property="id" jdbcType="VARCHAR"/>
+        <result column="bab_accpeting_company_type" property="companyType" typeHandler="com.sumscope.optimus.commons.databasetypehandler.EnumTypeHandler" />
+        <result column="company_name" property="companyName" jdbcType="VARCHAR"/>
+        <result column="iam_company_id" property="iamCompanyID" jdbcType="VARCHAR"/>
+        <result column="manager" property="manager"  jdbcType="VARCHAR"/>
+        <result column="address" property="address"  jdbcType="VARCHAR"/>
+        <result column="registration_number" property="registrationNumber"  jdbcType="VARCHAR"/>
+        <result column="company_name_py" property="companyNamePY"  jdbcType="VARCHAR"/>
+        <result column="company_name_pinyin" property="companyNamePinYin"  jdbcType="VARCHAR"/>
+        <result column="last_syn_datetime" property="lastSynDateTime"  jdbcType="TIMESTAMP"/>
+        <result column="expired_datetime" property="expiredDatetime"  jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <select id="retrieveAll" resultMap="BaseResultMap" >
+        SELECT * FROM bab_accpeting_company
+    </select>
+
+    <select id="retrieveByIDs" resultMap="BaseResultMap" parameterType="java.util.List">
+        SELECT * FROM bab_accpeting_company
+        <include refid="idInForeach"></include>
+    </select>
+
+    <insert id="insert" parameterType="com.sumscope.bab.quote.model.model.AcceptingCompanyModel" >
+        INSERT INTO bab_accpeting_company (ID, bab_accpeting_company_type, company_name, iam_company_id, manager, address, registration_number,
+        company_name_py, company_name_pinyin, last_syn_datetime, expired_datetime)
+        VALUES (
+        #{id}, #{companyType}, #{companyName}, #{iamCompanyID}, #{manager}, #{address}, #{registrationNumber},
+        #{companyNamePY}, #{companyNamePinYin}, #{lastSynDateTime}, #{expiredDatetime}
+        )
+    </insert>
+
+    <update id="update" parameterType="com.sumscope.bab.quote.model.model.AcceptingCompanyModel" >
+        UPDATE bab_accpeting_company SET
+        last_syn_datetime = #{lastSynDateTime},
+        expired_datetime = #{expiredDatetime}
+        WHERE ID=#{id}
+    </update>
+
+    <delete id="deletes" parameterType="java.util.List" >
+        DELETE FROM bab_accpeting_company
+        <include refid="idInForeach"></include>
+    </delete>
+
+    <sql id="idInForeach">
+        WHERE ID IN
+        <foreach item="item" index="index" collection="list"
+                 open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </sql>
+
+</mapper>

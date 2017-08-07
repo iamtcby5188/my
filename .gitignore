@@ -1,0 +1,14 @@
+.idea
+/*.iml
+*.log
+target
+/src/main/webapp/node_modules
+/src/main/webapp/.vs/config
+/src/main/webapp/.vscode
+/src/main/webapp/obj/Debug
+/src/main/resources/application_local.properties
+/quote_shared/*.iml
+/quote_server/*.iml
+/src/main/webapp/.ntvs_analysis.dat
+/quote_client/*.iml
+/frontend_bab_common

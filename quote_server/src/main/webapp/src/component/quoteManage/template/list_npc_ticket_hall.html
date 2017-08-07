@@ -1,0 +1,43 @@
+<div layout="row">
+	<search-criteria-common md-theme="{{$ctrl.theme}}" item-source="vm.searchCriteriaDefine" ng-model="vm.searchCriteria" ng-change="$ctrl.onSearchCriteriaChanged()"></search-criteria-common>
+</div>
+<div layout="row" class="list_npc_container">
+	<md-button md-no-ink class="md-raised md-primary import" ng-if="$ctrl.importAuth" ng-click="$ctrl.onClickImport($event)">批量导入</md-button>
+	<md-button md-no-ink class="md-raised md-primary animation-target-addprice" ng-click="$ctrl.addPrice($event)">我要发价</md-button>
+	<span class="network-state"><span ng-class="{green:networkState === '良好', red:networkState === '断开'}">
+		</span> 网络{{ networkState }}
+	</span>
+	<span flex></span>
+	<div id="quoteRemind" ng-if="isReconnect" class="quote-remind" ng-click="$ctrl.onClickGridRefresh()">
+		网络重新连接，点击刷新！
+	</div>
+	<div class="input-container">
+		<drop-label md-theme="{{$ctrl.theme}}" label="交易模式" item-source="vm.dueTypeItemSource" ng-model="vm.dueType" input-flex="50"
+			label-flex="50" display-path="{{$ctrl.path}}" ng-change="$ctrl.onSearchCriteriaChanged()"></drop-label>
+	</div>
+	<!--<div class="input-container">
+        <input-date-picker-range ng-model="$ctrl.date"></input-date-picker-range>
+    </div>-->
+	<div class="auto-complete-container" style="margin-left:3px">
+		<input-auto-complete md-theme="{{$ctrl.theme}}" search-fun="$ctrl.doSearch(content)" is-async="true" ng-model="$ctrl.searchObj"
+			display-path="name" placeholder="发价方、备注"></input-auto-complete>
+	</div>
+</div>
+
+<grid-ticket-hall-npc search-criteria="{searchCriteria:vm.searchCriteria,dueType:vm.dueType,input:$ctrl.searchObj}"></grid-ticket-hall-npc>
+
+<panel-title-container md-theme="{{$ctrl.theme}}" titles="$ctrl.footTitles" ng-model="$ctrl.selectChartPage" ng-change="$ctrl.onSelectChartPage()"
+	ng-switch="$ctrl.selectChartPage">
+
+	<div class="chartVm_current" ng-switch-when="current">
+		<matrix-table-manage item-source="$ctrl.chartVm.currentItemSource"></matrix-table-manage>
+	</div>
+
+	<div ng-switch-when="tendency">
+		<input-button-selector md-theme="{{$ctrl.theme}}" ng-model="$ctrl.chartVm.quotePriceType" ng-change="$ctrl.onSearchCriteriaChanged()"
+			label="承兑行类别" vm-type="Object" has-select-all-button="false" item-source="$ctrl.chartVm.qptItemSource.other" display-path="name"
+			label-flex=10>
+			</input-button-selector>
+			<chart-manage chart-data="$ctrl.chartVm.chartData"></chart-manage>
+	</div>
+	</panel-title-container>

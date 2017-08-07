@@ -1,0 +1,30 @@
+<panel-search-pricemng md-theme="{{$ctrl.theme}}" item-source="vm.searchPanelData"
+                       ng-model="vm.ngModel.searchPanelModel"
+                       btn-click="$ctrl.onBtnClick($event, dataDefine)" tab-changed="$ctrl.onTabChanged(tabCode)"
+                       ng-change="$ctrl.onSearchCriteriaChanged()">
+</panel-search-pricemng>
+
+<grid-manage-npc-ticket-hall search-criteria="vm.ngModel.searchPanelModel"
+                             edit-list-item="$ctrl.onEditListItem($event, item)"
+                             publish-list-item="$ctrl.onPublishListItem($event, item)"
+                             del-list-item="$ctrl.onDelListItem($event, item)">
+</grid-manage-npc-ticket-hall>
+
+<panel-title-container md-theme="{{$ctrl.theme}}" titles="$ctrl.footTitles" ng-model="$ctrl.selectChartPage"
+                       ng-change="$ctrl.onSelectChartPage()"
+                       ng-switch="$ctrl.selectChartPage">
+
+	<div class="chartVm_current" ng-switch-when="current">
+		<matrix-table-manage item-source="$ctrl.chartVm.currentItemSource"></matrix-table-manage>
+	</div>
+
+	<div ng-switch-when="tendency">
+		<input-button-selector md-theme="{{$ctrl.theme}}" ng-model="$ctrl.chartVm.quotePriceType"
+		                       ng-change="$ctrl.onSearchCriteriaChanged()"
+		                       label="承兑行类别" vm-type="Object" has-select-all-button="false"
+		                       item-source="$ctrl.chartVm.qptItemSource.other"
+		                       display-path="name" label-flex=10>
+		</input-button-selector>
+		<chart-manage chart-data="$ctrl.chartVm.chartData"></chart-manage>
+	</div>
+</panel-title-container>

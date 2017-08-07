@@ -1,0 +1,30 @@
+@import './baseLess/color';
+input-label {
+    div.layout-row > label {
+        line-height: 42px;
+        color: @ssTextExtColor;
+        &.required:before {
+            content: '*';
+            color: @ssRequiredMarkColor;
+            margin: 3px;
+            vertical-align: middle;
+        }
+    }
+    textarea,
+    input {
+        margin: 8px 6px;
+        padding: 0 3px;
+    }
+    textarea {
+        color: @ssInputColor;
+        background-color: @ssInputBgColor;
+        border-color: transparent;
+        width: 100%;
+        height: 60px;
+		resize: none;
+        border-radius: 2px;
+        &:focus {
+            outline: transparent auto 5px;
+        }
+    }
+}

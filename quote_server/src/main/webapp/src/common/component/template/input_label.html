@@ -1,0 +1,11 @@
+<div layout="row">
+    <!--<span ng-show="{{$ctrl.itemInfo.must}}" style="color : red">*</span>-->
+    <label ng-if="!$ctrl.label" flex="{{$ctrl.labelFlex}}"></label>
+    <label ng-if="$ctrl.label" ng-bind-template="{{$ctrl.label}}：" flex="{{$ctrl.labelFlex}}" ng-class="{'required': $ctrl.isRequired}"></label>
+
+    <textarea ng-if="$ctrl.mutiLine" ng-disabled="{{$ctrl.isDisabled}}" flex="{{$ctrl.inputFlex}}" value="{{$ctrl.defaultValue}}"
+        placeholder="{{$ctrl.placeholder}}" ng-model="$ctrl.ngModel" ng-change="$ctrl.onInputChange()"></textarea>
+    <input ng-if="!$ctrl.mutiLine" type="{{$ctrl.inputText?$ctrl.inputText:'text'}}" class="ss-input-text ss-input-text-sm" ng-disabled="{{$ctrl.isDisabled}}" value="{{$ctrl.defaultValue}}"
+        ng-readonly="$ctrl.isReadonly" flex="{{$ctrl.inputFlex}}" placeholder="{{$ctrl.placeholder}}" ng-model="$ctrl.ngModel"
+        ng-change="$ctrl.onInputChange()" />
+</div>

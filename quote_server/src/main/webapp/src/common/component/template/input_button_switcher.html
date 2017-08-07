@@ -1,0 +1,11 @@
+<div layout="row" layout-align="start center">
+    <label ng-if="!$ctrl.label" flex="{{$ctrl.labelFlex}}"></label>
+    <label ng-if="$ctrl.label" ng-bind-template="{{$ctrl.label}}：" flex="{{$ctrl.labelFlex}}"></label>
+    <nav flex="{{$ctrl.inputFlex}}">
+        <ul ng-click="$ctrl.onClickItemButton($event)">
+            <li ng-repeat="item in $ctrl.itemSource">
+                <md-button md-no-ink ng-class="{'active md-raised md-primary': item.isChecked}" ng-bind="item.$displayName" aria-label="{{item.$id}}"></md-button>
+            </li>
+        </ul>
+    </nav>
+</div>

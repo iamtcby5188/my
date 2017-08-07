@@ -1,0 +1,79 @@
+{
+  "_args": [
+    [
+      {
+        "raw": "reconnectingwebsocket",
+        "scope": null,
+        "escapedName": "reconnectingwebsocket",
+        "name": "reconnectingwebsocket",
+        "rawSpec": "",
+        "spec": "latest",
+        "type": "tag"
+      },
+      "F:\\BAB java\\src\\main\\webapp"
+    ]
+  ],
+  "_from": "reconnectingwebsocket@latest",
+  "_id": "reconnectingwebsocket@1.0.0",
+  "_inCache": true,
+  "_location": "/reconnectingwebsocket",
+  "_npmUser": {
+    "name": "arnauddri",
+    "email": "arnaud.drizard@gmail.com"
+  },
+  "_npmVersion": "1.4.28",
+  "_phantomChildren": {},
+  "_requested": {
+    "raw": "reconnectingwebsocket",
+    "scope": null,
+    "escapedName": "reconnectingwebsocket",
+    "name": "reconnectingwebsocket",
+    "rawSpec": "",
+    "spec": "latest",
+    "type": "tag"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/reconnectingwebsocket/-/reconnectingwebsocket-1.0.0.tgz",
+  "_shasum": "0b825babb37b670445c65aa7d3ed978300205444",
+  "_shrinkwrap": null,
+  "_spec": "reconnectingwebsocket",
+  "_where": "F:\\BAB java\\src\\main\\webapp",
+  "author": {
+    "name": "arnauddri"
+  },
+  "bugs": {
+    "url": "https://github.com/joewalnes/reconnecting-websocket/issues"
+  },
+  "dependencies": {},
+  "description": "A small JavaScript library that decorates the WebSocket API to provide a WebSocket connection that will automatically reconnect if the connection is dropped.",
+  "devDependencies": {},
+  "directories": {},
+  "dist": {
+    "shasum": "0b825babb37b670445c65aa7d3ed978300205444",
+    "tarball": "https://registry.npmjs.org/reconnectingwebsocket/-/reconnectingwebsocket-1.0.0.tgz"
+  },
+  "gitHead": "5bc6436e5749294010c309026b34073ed0b9ad0b",
+  "homepage": "https://github.com/joewalnes/reconnecting-websocket",
+  "license": "MIT",
+  "main": "reconnecting-websocket.js",
+  "maintainers": [
+    {
+      "name": "arnauddri",
+      "email": "arnaud.drizard@gmail.com"
+    }
+  ],
+  "name": "reconnectingwebsocket",
+  "optionalDependencies": {},
+  "readme": "ERROR: No README data found!",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/joewalnes/reconnecting-websocket.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "version": "1.0.0"
+}

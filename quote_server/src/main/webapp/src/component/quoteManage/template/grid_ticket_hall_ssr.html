@@ -1,0 +1,21 @@
+<div id="gridViewBusy">
+	<div class="grid-toolbar-container" layout="row">
+		<md-button md-no-ink class="md-raised md-primary md-button md-ink-ripple import" ng-if="$ctrl.importAuth" ng-click="$ctrl.onClickImport($event)">批量导入</md-button>
+		<md-button md-no-ink class="md-raised md-primary md-button md-ink-ripple animation-target-addprice" ng-click="$ctrl.onClickAddPrice($event)">我要报价</md-button>
+		<span class="network-state"><span ng-class="{green:networkState === '良好', red:networkState === '断开'}"></span> 网络{{ networkState }}</span>
+		<span flex></span>
+		<input-auto-complete class="auto-complete-container" md-theme="{{$ctrl.theme}}"
+		                     ng-model="$ctrl.searchObj" vm-changed="$ctrl.onVmChanged()"
+		                     search-fun="$ctrl.doSearch(content)" is-async="true" display-path="name"
+							 length-limit="40" placeholder="报价方、备注">
+		</input-auto-complete>
+		<div id="quoteRemind" ng-if="isReconnect" class="quote-remind" ng-click="$ctrl.onClickGridRefresh()">
+			网络重新连接，点击刷新！
+		</div>
+	</div>
+	<div class="" layout="row">
+		<div ui-grid="gridOptions" class="grid ui-grid" ui-grid-auto-resize ui-grid-save-state ui-grid-move-columns
+		     ui-grid-resize-columns ui-grid-infinite-scroll></div>
+	</div>
+	<div id="qqcopy" class="qqcopy" ng-show="copyqqsuccess" class="qqcopy"> 您已成功复制QQ号{{ qqnumber }}</div>
+</div>

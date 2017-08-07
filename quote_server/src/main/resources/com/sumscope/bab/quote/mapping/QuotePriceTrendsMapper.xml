@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sumscope.bab.quote.mapping.QuotePriceTrendsMapper">
+    <resultMap id="BaseResultMap" type="com.sumscope.bab.quote.model.model.QuotePriceTrendsModel">
+        <result column="id" property="id" jdbcType="VARCHAR"/>
+        <result column="quote_type" property="quoteType"
+                typeHandler="com.sumscope.optimus.commons.databasetypehandler.EnumTypeHandler"/>
+        <result column="quote_date" property="quoteDate" jdbcType="TIMESTAMP"/>
+        <result column="minor_flag" property="minorFlag" jdbcType="BOOLEAN"/>
+        <result column="bill_medium" property="billMedium"
+                typeHandler="com.sumscope.optimus.commons.databasetypehandler.EnumTypeHandler"/>
+        <result column="bill_type" property="billType"
+                typeHandler="com.sumscope.optimus.commons.databasetypehandler.EnumTypeHandler"/>
+        <result column="quote_price_type" property="quotePriceType"
+                typeHandler="com.sumscope.optimus.commons.databasetypehandler.EnumTypeHandler"/>
+        <result column="trade_type" property="tradeType"
+                typeHandler="com.sumscope.optimus.commons.databasetypehandler.EnumTypeHandler"/>
+        <result column="price_max" property="priceMax" jdbcType="DECIMAL"/>
+        <result column="price_avg" property="priceAvg" jdbcType="DECIMAL"/>
+        <result column="price_min" property="priceMin" jdbcType="DECIMAL"/>
+        <result column="create_datetime" property="createDatetime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="SearchPriceTrendsColumns">
+        id,quote_date,minor_flag,bill_medium,bill_type,quote_price_type,price_max,price_avg,price_min,create_datetime,trade_type,quote_type
+    </sql>
+
+    <select id="SearchPriceTrendsByConditions" resultMap="BaseResultMap"
+            parameterType="com.sumscope.bab.quote.model.model.QuotePriceTrendsParameterModel">
+        SELECT
+        <include refid="SearchPriceTrendsColumns"/>
+        FROM
+        quote_price_trend
+        WHERE
+        <![CDATA[
+             quote_date >= #{startDate} AND quote_date <= #{endDate}
+        ]]>
+        AND
+        quote_type = #{quoteType,typeHandler=com.sumscope.optimus.commons.databasetypehandler.EnumTypeHandler }
+        AND
+        minor_flag = #{minorFlag,jdbcType=INTEGER}
+        AND
+        bill_medium = #{billMedium,typeHandler=com.sumscope.optimus.commons.databasetypehandler.EnumTypeHandler}
+        AND
+        bill_type = #{billType,typeHandler=com.sumscope.optimus.commons.databasetypehandler.EnumTypeHandler}
+        <if test="tradeType != null">
+            AND
+            trade_type = #{tradeType,typeHandler=com.sumscope.optimus.commons.databasetypehandler.EnumTypeHandler}
+        </if>
+        AND
+        quote_price_type =
+        #{quotePriceType,typeHandler=com.sumscope.optimus.commons.databasetypehandler.EnumTypeHandler}
+        ORDER BY quote_date desc
+    </select>
+
+    <delete id="DeletePriceTrendsByDate">
+        DELETE FROM quote_price_trend
+           <![CDATA[
+           WHERE create_datetime >= #{beginingDate} AND create_datetime <= #{latestDate}
+           ]]>
+    </delete>
+
+    <insert id="InsertPriceTrends" parameterType="java.util.List">
+        INSERT INTO quote_price_trend
+        (ID, quote_date, minor_flag, bill_medium, bill_type, quote_price_type, price_max,
+        price_avg, price_min, create_datetime,trade_type,quote_type)
+        VALUES
+        <foreach item="item" index="index" collection="list"
+                 open="" separator="," close="">
+            (
+            #{item.id,jdbcType=VARCHAR},
+            #{item.quoteDate,jdbcType=TIMESTAMP},
+            #{item.minorFlag,jdbcType=INTEGER},
+            #{item.billMedium,typeHandler=com.sumscope.optimus.commons.databasetypehandler.EnumTypeHandler},
+            #{item.billType,typeHandler=com.sumscope.optimus.commons.databasetypehandler.EnumTypeHandler},
+            #{item.quotePriceType,typeHandler=com.sumscope.optimus.commons.databasetypehandler.EnumTypeHandler},
+            #{item.priceMax,jdbcType=DECIMAL},
+            #{item.priceAvg,jdbcType=DECIMAL},
+            #{item.priceMin,jdbcType=DECIMAL},
+            #{item.createDatetime,jdbcType=TIMESTAMP},
+            #{item.tradeType,typeHandler=com.sumscope.optimus.commons.databasetypehandler.EnumTypeHandler},
+            #{item.quoteType,typeHandler=com.sumscope.optimus.commons.databasetypehandler.EnumTypeHandler}
+            )
+        </foreach>
+    </insert>
+
+</mapper>

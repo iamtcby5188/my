@@ -1,0 +1,46 @@
+<div class="user-info-container" layout="column">
+    <div class="label-show" layout="row">
+        <label flex="20">登录账号:</label>
+        <span>{{$ctrl.curUserInfo.currentUser.userName}}</span>
+    </div>
+    <div class="label-show" layout="row">
+        <label flex="20">用户姓名:</label>
+        <span>{{$ctrl.curUserInfo.currentUser.name}}</span>
+    </div>
+    <div class="label-show" layout="row">
+        <label flex="20">所属公司:</label>
+        <span>{{$ctrl.curUserInfo.currentCompany.fullName}}</span>
+    </div>
+    <!--<div class="label-show" layout="row">
+        <label flex="20">公司邮箱:</label>
+        <span>aaaa</span>
+    </div>-->
+    <div class="label-show" layout="row">
+        <label flex="20">手机号码:</label>
+        <span>{{$ctrl.curUserInfo.currentUser.mobileTel}}</span>
+    </div>
+    <div class="label-show" layout="row">
+        <label flex="20">部门职位:</label>
+        <span>{{$ctrl.curUserInfo.currentUser.dept}}</span>
+    </div>
+    <!--<div class="label-show" layout="row">
+        <label flex="20">公司固话:</label>
+        <span>aaaa</span>
+    </div>-->
+    <div class="label-show" layout="row">
+        <label flex="20">QQ/微信:</label>
+        <span>{{$ctrl.curUserInfo.currentUser.qq}}</span>
+    </div>
+    <!--<div class="label-show" layout="row">
+        <label flex="20">通讯地址:</label>
+        <span flex="80" style="text-align: left; word-wrap: break-word;word-break: break-all">aaaaaaaaaaaa</span>
+    </div>-->
+
+    <div class="grid-container" layout="row">
+        <label flex="20">关联账户:</label>
+        <div flex="80">  
+            <grid-user-info un-join-user="$ctrl.unJoinUser(contact)" jonin-user = "$ctrl.joinUserinfo"></grid-user-info>
+        </div>
+    </div>
+    <md-button md-no-ink md-theme="{{$ctrl.theme}}" ng-disabled="{{$ctrl.enableButton}}" ng-class="{'disable-btn':$ctrl.enableButton,'md-primary':!$ctrl.enableButton}" ng-click="$ctrl.onClickAdd($event)">+ 添加用户</md-button>
+</div>

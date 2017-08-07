@@ -1,0 +1,163 @@
+@import "./baseLess/color";
+
+grid-calendar-select {
+	table.calendar-body {
+		color: #FFEBC8;
+		padding-bottom: 40px;
+		background-color: #232628;
+		font-size: 25px;
+		border-collapse: collapse;
+		.pointer {
+			cursor: pointer;
+		}
+		th {
+			font-size: 20px;
+			color: #777c7e;
+			border: 1px solid #161819;
+		}
+		td {
+			padding: 7px 30px;
+			text-align: right;
+			border: 1px solid #161819;
+			position: relative;
+			.result {
+				font-size: 15px;
+				color: #00d673;
+			}
+			.holiday {
+				position: absolute;
+				left: 0;
+				top: 0;
+			}
+			.holiday-reason {
+				font-size: 14px;
+				color: #ff9b00;
+				text-align: left;
+				white-space: nowrap;
+			}
+		}
+		td.weekend {
+			background-color: #2f3335;
+		}
+		td.pointer:hover {
+			border: 2px solid #ffa51a;
+		}
+		td.selected.pointer {
+			border: 2px solid #ffa51a;
+		}
+		td.selected {
+			border: 2px solid #00d673;
+		}
+	}
+}
+
+@media screen and (max-height: 751px) {
+	grid-calendar-select {
+		table.calendar-body {
+			td {
+				padding: 3px 30px;
+				font-size: 15px;
+				div {
+					height: 15px;
+					line-height: 15px;
+				}
+				.ss-icon-calendar-holiday-badge {
+					height: 30px;
+					transform: scale(0.7);
+					left: -5px;
+					top: -5px;
+				}
+				.holiday-reason,
+				.result {
+					font-size: 12px;
+				}
+			}
+			td.pointer:hover {
+				border: 1px solid #ffa51a;
+			}
+			td.selected.pointer {
+				border: 1px solid #ffa51a;
+			}
+			td.selected {
+				border: 1px solid #00d673;
+			}
+			th {
+				font-size: 14px;
+			}
+		}
+	}
+}
+
+@media screen and (max-height: 851px) and (min-height: 751px) {
+	grid-calendar-select {
+		table.calendar-body {
+			td {
+				padding: 5px 30px;
+				font-size: 18px;
+				div {
+					height: 19px;
+					line-height: 19px;
+				}
+				.ss-icon-calendar-holiday-badge {
+					height: 30px;
+					transform: scale(0.7);
+					left: -5px;
+					top: -5px;
+				}
+				.holiday-reason,
+				.result {
+					font-size: 12px;
+				}
+			}
+			td.pointer:hover {
+				border: 1px solid #ffa51a;
+			}
+			td.selected.pointer {
+				border: 1px solid #ffa51a;
+			}
+			td.selected {
+				border: 1px solid #00d673;
+			}
+			th {
+				font-size: 14px;
+			}
+		}
+	}
+}
+
+@media screen and (max-height: 960px) and (min-height: 851px) {
+	grid-calendar-select {
+		table.calendar-body {
+			td {
+				padding: 5px 30px;
+				font-size: 20px;
+				div {
+					height: 24px;
+					line-height: 24px;
+				}
+				.ss-icon-calendar-holiday-badge {
+					height: 30px;
+					transform: scale(0.9);
+					left: -2px;
+					top: -3px;
+				}
+				.holiday-reason,
+				.result {
+					font-size: 14px;
+				}
+			}
+			td.pointer:hover {
+				border: 1px solid #ffa51a;
+			}
+			td.selected.pointer {
+				border: 1px solid #ffa51a;
+			}
+			td.selected {
+				border: 1px solid #00d673;
+			}
+			th {
+				font-size: 16px;
+			}
+		}
+	}
+}

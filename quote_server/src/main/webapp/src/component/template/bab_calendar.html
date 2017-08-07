@@ -1,0 +1,47 @@
+<div class="calendar-container" layout="row" md-theme="{{$ctrl.theme}}">
+	<div flex="20" class="calendar-left text-center" layout="column">
+		<div class="calendar-left-top">
+			<div class="residual">
+				<span class="time">{{ $ctrl.result }}</span>
+				<span class="day">天</span>
+			</div>
+			<div class="date" ng-bind="$ctrl.date"></div>
+			<div class="year">
+				<span ng-bind="$ctrl.year"></span>
+				<span ng-bind="$ctrl.week"></span>
+			</div>
+		</div>
+		<div class="calendar-left-bottom" flex>
+			<input-button-selector md-theme="{{$ctrl.theme}}" ng-model="$ctrl.period" vm-changed="$ctrl.onVmChanged()"
+			                       has-select-all-button="false" item-source="$ctrl.itemSource"
+			                       label="期限类型" label-flex="30" input-flex="70" vm-type="Object">
+			</input-button-selector>
+			<div class="hint">
+				<span class="ss-icon ss-icon-help-normal"></span>
+				<span>周末、节假日加天系统已自动计算，开票期限可直接参考开票日历。</span>
+			</div>
+		</div>
+	</div>
+	<div flex="80" class="calendar-right">
+		<div class="start-time">
+			<div layout="row" class="title">
+				<span class="date-label start-date text-center">开票日</span>
+				<span class="start-time">{{ $ctrl.startTime }}</span>
+				<md-select ng-model="$ctrl.selectYear" aria-label="年份" ng-change="$ctrl.onDateChange(false)">
+					<md-option ng-repeat="year in $ctrl.years" ng-value="year" aria-label="月份">{{ year + '年' }}</md-option>
+				</md-select>
+				<md-select ng-model="$ctrl.selectMonth" placeholder="月份" ng-change="$ctrl.onDateChange(true)">
+					<md-option ng-repeat="month in $ctrl.months" ng-value="month">{{ month + '月' }}</md-option>
+				</md-select>
+			</div>
+			<grid-calendar-select type="start" vm-changed="$ctrl.period" start-date="$ctrl.startDate"></grid-calendar-select>
+		</div>
+		<div class="end-time">
+			<div layout="row" class="title">
+				<span class="date-label start-date text-center">到期日</span>
+				<span class="end-time">{{ $ctrl.endTime }}</span>
+			</div>
+			<grid-calendar-select type="end" end-date="$ctrl.endDate" flex></grid-calendar-select>
+		</div>
+	</div>
+</div>

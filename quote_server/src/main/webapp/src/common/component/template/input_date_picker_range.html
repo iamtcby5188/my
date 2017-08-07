@@ -1,0 +1,12 @@
+<div layout="row" layout-align="start center">
+    <label ng-if="!$ctrl.label"></label>
+    <label ng-if="$ctrl.label" flex = "{{$ctrl.ctrlFlex.label}}" ng-bind-template="{{$ctrl.label}}：" ng-class="{'required': $ctrl.isRequired}"></label>
+
+    <div class="input-container" flex = "{{$ctrl.ctrlFlex.start}}" style="margin-left: 6px">
+        <input  class="ss-datepicker-directive" read-only="true" md-theme="{{$ctrl.theme}}" ng-model="$ctrl.dateRange.start" vm-changed="$ctrl.onVmChanged()"></input>
+    </div>
+    <span class="split">-</span>
+    <div class="input-container" flex = "{{$ctrl.ctrlFlex.end}}">
+        <input  class="ss-datepicker-directive" read-only="true" md-theme="{{$ctrl.theme}}" ng-model="$ctrl.dateRange.end" vm-changed="$ctrl.onVmChanged()"></input>
+    </div>
+</div>

@@ -1,0 +1,5 @@
+<div ng-click="$ctrl.onClick($event)">
+    <md-nav-bar md-selected-nav-item="$ctrl.currentNavItem" nav-bar-aria-label="navigation links" md-colors="::{backgroundColor: '{{$ctrl.theme}}-background-700'}">
+        <md-nav-item ng-repeat="item in $ctrl.itemSource" md-nav-click="" name="{{item.code}}">{{item.name}}</md-nav-item>
+    </md-nav-bar>
+</div>

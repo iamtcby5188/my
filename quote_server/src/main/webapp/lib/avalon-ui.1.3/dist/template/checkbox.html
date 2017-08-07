@@ -1,0 +1,5 @@
+<div class="ss-input-control ss-checkbox" ng-click="onClick($event)">
+    <input type="checkbox" ng-model="value" ng-change="onChangeChecked($event)" ng-disabled="{{isDisabled}}">
+    <i class="check ss-icon ss-icon-primary ss-icon-checkbox-{{value?'selected':'unselected'}}" ng-disabled="{{isDisabled}}"></i>
+    <span class="caption" ng-class="{'ss-text-disabled':isDisabled}" ng-bind="label" ng-disabled="{{isDisabled}}"></span>
+</div>

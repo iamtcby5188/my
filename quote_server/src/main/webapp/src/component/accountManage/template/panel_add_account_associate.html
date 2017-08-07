@@ -1,0 +1,29 @@
+<md-dialog class="account-associate-dlg" md-theme="{{$ctrl.theme}}" aria-label="dialog" md-colors="::{backgroundColor: '{{$ctrl.theme}}-background-700'}">
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <h2 ng-bind="$ctrl.title"></h2>
+            <span flex></span>
+            <md-button md-no-ink class="md-icon-button" ng-click="$ctrl.$onClickCancel()">
+                <md-icon class="ss-icon ss-icon-close" aria-label="Close dialog"></md-icon>
+            </md-button>
+        </div>
+    </md-toolbar>
+    <md-dialog-content class="md-dialog-content">
+            <div layout="column">
+                <div style="margin-bottom:6px">将该账户:</div>
+                <md-radio-group ng-model="$ctrl.selected" layout="row"  ng-class="md-primary">
+                    <md-radio-button ng-repeat="item in $ctrl.radioDate" ng-value="item.value">{{item.display}}</md-radio-button>
+                </md-radio-group>
+                <input-label  md-theme="{{$ctrl.theme}}" label="账户名" label-flex="$ctrl.labelFlex" input-flex="$ctrl.inputFlex" ng-model="$ctrl.userName"></input-label>
+                <input-label md-theme="{{$ctrl.theme}}" label="密&nbsp&nbsp&nbsp&nbsp码" label-flex="$ctrl.labelFlex" input-flex="$ctrl.inputFlex" ng-model="$ctrl.password" input-text="password"></input-label>
+            <div>-----------------------------------------------------------------------------------------</div>
+            <div>账户成功关联后：</div>
+              <div style="margin-left:18px">1.  母账户可以代子账户进行业务申报；</div>
+              <div style="margin-left:18px">2.  母账户代报业务，母子账户双方均可进行操作；</div>
+            </div>        
+    </md-dialog-content>
+    <md-dialog-actions>
+        <md-button md-no-ink ng-click="$ctrl.$onClickOk($event)" class="md-primary md-confirm-button">{{ $ctrl.okText }}</md-button>
+        <md-button md-no-ink ng-click="$ctrl.$onClickCancel($event)" class="md-primary md-cancel-button">{{ $ctrl.cancelText }}</md-button>
+    </md-dialog-actions>
+</md-dialog>

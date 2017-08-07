@@ -1,0 +1,54 @@
+<md-dialog aria-label="新增价格" md-theme="{{$ctrl.theme}}" md-colors="::{backgroundColor: '{{$ctrl.theme}}-background-700'}">
+  <form ng-cloak>
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>新增价格</h2>
+        <span flex></span>
+        <md-button md-no-ink class="md-icon-button" ng-click="$ctrl.cancel()">
+          <md-icon class="ss-icon ss-icon-close" aria-label="Close dialog"></md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+
+    <md-dialog-content>
+
+      <div layout="column" layout-margin>
+
+        <input-button-switcher ng-model="selectedItems1" item-source="$ctrl.itemSource1">
+        </input-button-switcher>
+
+        <input-button-selector label-flex="30" input-flex="70" label="按钮选择器" ng-model="selectedItems" item-source="$ctrl.itemSource" display-path="displayName"></input-button-selector>
+        <div layout="row">
+          <span ng-repeat="item in selectedItems" ng-bind-template="{{item.displayName}}, "></span>
+        </div>
+
+        <input-label item-info="$ctrl.itemInfo" ng-model="info"></input-label>
+
+        <div>
+        <span ng-bind-template="{{info.itemContent}}"></span>
+        </div>
+
+        <input-label-drop item-info="$ctrl.itemDrop" ng-model="dropinfo"> </input-label-drop>
+        <span>{{dropinfo.itemContent}} :  {{dropinfo.selectItem.displayName}}</span>
+
+        <drop-label item-info="$ctrl.itemDrop" ng-model="droplabel"> </drop-label>
+        <span>{{droplabel.itemContent}} :  {{droplabel.selectItem.displayName}}</span>
+
+      </div>
+
+    </md-dialog-content>
+
+    <md-dialog-actions layout="row">
+      <md-button md-no-ink href="http://en.wikipedia.org/wiki/Mango" target="_blank" md-autofocus>
+        More on Wikipedia
+      </md-button>
+      <span flex></span>
+      <md-button md-no-ink ng-click="$ctrl.answer('not useful')">
+        Not Useful
+      </md-button>
+      <md-button md-no-ink ng-click="$ctrl.answer('useful')">
+        Useful
+      </md-button>
+    </md-dialog-actions>
+  </form>
+</md-dialog>

@@ -1,0 +1,77 @@
+@import './baseLess/color';
+
+@media screen and (max-width: 1685px) and (min-width: 1301px) {
+	panel-price-spread {
+		.container {
+			.panel {
+				padding: 10px 5px;
+			}
+			.name {
+				font-size: 14px;
+			}
+			.spread {
+				font-size: 14px;
+			}
+		}
+	}
+}
+
+@media screen and (max-width: 1300px) {
+	panel-price-spread {
+		.container {
+			.panel {
+				padding: 5px 1px;
+			}
+			.name {
+				font-size: 12px;
+			}
+			.spread {
+				font-size: 12px;
+			}
+			.straight, .posted {
+				width: 100%;
+				text-align: left;
+			}
+		}
+	}
+}
+
+panel-price-spread {
+	color: #fff;
+	.name {
+		font-size: 14px;
+		color: #ffd04f;
+	}
+	.spread {
+		font-size: 18px;
+	}
+	.straight {
+		font-size: 12px;
+	}
+	.posted {
+		font-size: 12px;
+	}
+	.panel {
+		padding: 15px;
+		margin: 5px;
+		border-radius: 2px;
+	}
+	.panel.red {
+		background-color: #811c1c;
+	}
+	.panel.green {
+		background-color: #206120;
+	}
+	.panel.gray {
+		background-color: #5b6065;
+	}
+	.text-center {
+		text-align: center;
+	}
+	.text-right {
+		text-align: right;
+	}
+	.no-wrap {
+		white-space: nowrap;
+	}
+}

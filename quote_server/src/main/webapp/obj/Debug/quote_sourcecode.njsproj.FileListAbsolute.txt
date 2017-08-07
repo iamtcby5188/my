@@ -1,0 +1,2 @@
+D:\Sumscope\Bab\quote_sourcecode\quote_server\src\main\webapp\obj\Debug\quote_sourcecode.njsprojResolveAssemblyReference.cache
+D:\Sumscope\Bab\quote_sourcecode\quote_server\src\main\webapp\bin\Microsoft.NodejsTools.WebRole.dll

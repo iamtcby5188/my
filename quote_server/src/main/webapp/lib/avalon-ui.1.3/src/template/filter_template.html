@@ -1,0 +1,5 @@
+<div class="filterRect">
+    <ul>
+        <li ng-repeat="condition in conditions track by $index"><button class="ss-btn {{condition.active?'ss-btn-warning':'ss-btn-gray'}}" type="button" ng-click="filterBtnClick($event,$index)">{{condition.title}}</button></li>
+    </ul>
+</div>

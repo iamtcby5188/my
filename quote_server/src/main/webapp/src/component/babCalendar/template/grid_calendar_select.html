@@ -1,0 +1,28 @@
+<table class="calendar-body" width="100%" height="100%">
+	<tbody layout="column" height="100%" ng-switch="$ctrl.type">
+	<tr class="" layout="row" flex>
+		<th class="" flex layout="row" layout-align="center center">星期日</th>
+		<th class="" flex layout="row" layout-align="center center">星期一</th>
+		<th class="" flex layout="row" layout-align="center center">星期二</th>
+		<th class="" flex layout="row" layout-align="center center">星期三</th>
+		<th class="" flex layout="row" layout-align="center center">星期四</th>
+		<th class="" flex layout="row" layout-align="center center">星期五</th>
+		<th class="" flex layout="row" layout-align="center center">星期六</th>
+	</tr>
+	<tr ng-switch-when="start" class="" layout="row" flex ng-repeat="item in $ctrl.startDate">
+		<td ng-click="$ctrl.onClickDate($event, e)" ng-class="{weekend: e.dayOfWeek===1 || e.dayOfWeek===7, pointer: e.date, selected: e.selected}" flex ng-repeat="e in item track by $index">
+			<div class="">{{ e.date | date:"d"}}</div>
+			<div class="ss-icon ss-icon-calendar-holiday-badge holiday" ng-if="e.holidayReason"></div>
+			<div class="holiday-reason" ng-if="e.holidayReason">{{ e.holidayReason }}</div>
+			<div class="result" ng-if="!e.holidayReason">{{ e.holdingPeriod }}</div>
+		</td>
+	</tr>
+	<tr ng-switch-when="end" class="" layout="row" flex ng-repeat="item in $ctrl.endDate">
+		<td class="" ng-class="{weekend: e.dayOfWeek===1 || e.dayOfWeek===7, selected: e.selected}" flex ng-repeat="e in item track by $index">
+			<div class="">{{ e.date | date:"d"}}</div>
+			<div class="ss-icon ss-icon-calendar-holiday-badge holiday" ng-if="e.holidayReason"></div>
+			<div class="holiday-reason" ng-if="e.holidayReason">{{ e.holidayReason }}</div>
+		</td>
+	</tr>
+	</tbody>
+</table>

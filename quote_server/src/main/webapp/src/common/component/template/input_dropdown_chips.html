@@ -1,0 +1,43 @@
+<div layout="row" layout-align="start center" ng-click="$ctrl.onClickItemButton($event)">
+    <label ng-bind-template="{{$ctrl.label}}：" flex="{{$ctrl.labelFlex}}"></label>
+    <div layout="row" flex="{{$ctrl.inputFlex}}" layout-wrap>
+        <md-contact-chips ng-model="$ctrl.vm.selectedItems" ng-model-options="{ getterSetter: true }" readonly="false" md-removable="true" md-max-chips="5" md-contacts="$ctrl.querySearch($query)" md-contact-name="name" md-require-match="true" md-highlight-flags="i"
+            filter-selected="false" placeholder="{{$ctrl.placeholder}}">
+            <md-chip-template>
+                <strong ng-bind="$chip"></strong>
+            </md-chip-template>
+        </md-contact-chips>
+    </div>
+</div>
+
+
+<!--<div ng-controller="ContactChipDemoCtrl as ctrl" layout="column" ng-cloak="" class="chipsdemoContactChips" ng-app="MyApp">
+
+  <md-content class="md-padding autocomplete" layout="column">
+    <md-contact-chips ng-model="ctrl.contacts" md-contacts="ctrl.querySearch($query)" md-contact-name="name" md-contact-image="image" md-contact-email="email" md-require-match="true" md-highlight-flags="i" filter-selected="ctrl.filterSelected" placeholder="To">
+    </md-contact-chips>
+
+    <md-list class="fixedRows">
+      <md-subheader class="md-no-sticky">Contacts</md-subheader>
+      <md-list-item class="md-2-line contact-item" ng-repeat="(index, contact) in ctrl.allContacts" ng-if="ctrl.contacts.indexOf(contact) < 0">
+        <img ng-src="{{contact.image}}" class="md-avatar" alt="{{contact.name}}">
+        <div class="md-list-item-text compact">
+          <h3>{{contact.name}}</h3>
+          <p>{{contact.email}}</p>
+        </div>
+      </md-list-item>
+      <md-list-item class="md-2-line contact-item selected" ng-repeat="(index, contact) in ctrl.contacts">
+        <img ng-src="{{contact.image}}" class="md-avatar" alt="{{contact.name}}">
+        <div class="md-list-item-text compact">
+          <h3>{{contact.name}}</h3>
+          <p>{{contact.email}}</p>
+        </div>
+      </md-list-item>
+    </md-list>
+
+    <br>
+    <h2 class="md-title">Searching asynchronously.</h2>
+    <md-contact-chips ng-model="ctrl.asyncContacts" md-contacts="ctrl.delayedQuerySearch($query)" md-contact-name="name" md-contact-image="image" md-contact-email="email" md-require-match="true" md-highlight-flags="i" filter-selected="ctrl.filterSelected" placeholder="To">
+    </md-contact-chips>
+  </md-content>
+</div>
